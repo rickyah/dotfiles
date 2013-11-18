@@ -19,3 +19,9 @@ daisydisk
 dropbox
 xquartz
 spotify
+hipchat
+# charles requires java
+java
+charles
+rescuetime
+iexplorer

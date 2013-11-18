@@ -27,6 +27,14 @@ alias bi='bundle install'
 #   alias git='hub'
 # fi
 
+# Subversion
+alias sl='svn log -l $1'
+alias sup='svn update'
+alias sst='svn status'
+alias smt='svn merge ^/trunk'
+alias smre='svn merge $1 --reintegrate'
+alias ssw='svn switch $1'
+
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr en1"
@@ -84,3 +92,8 @@ alias plistbuddy="/usr/libexec/PlistBuddy"
 # Ring the terminal bell, and put a badge on Terminal.app’s Dock icon
 # (useful when executing time-consuming commands)
 alias badge="tput bel"
+
+## adb
+alias arun="adb install DragonStadium.apk && adb shell am start -n es.socialpoint.DragonStadium/es.socialpoint.unity.base.SPUnityActivity"
+alias arm="adb shell pm uninstall -k es.socialpoint.DragonStadium"
+alias alog="adb logcat -s Unity ActivityManager PackageManager dalvikvm DEBUG"

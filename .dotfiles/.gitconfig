@@ -1,6 +1,6 @@
 [user]
   name = Ricardo Amores
-  email = rickyah@gmail.com
+  email = ricardo.amores@socialpoint.es
 
 [color]
   ui = true
@@ -109,6 +109,9 @@
   r = reset
   rhh = reset HEAD --hard
 
+ # spl = svn rebase
+ # sps = svn dcommit --rmdir
+ # sclean = "!f() { git clean -fd && git svn mkdirs;};f"
 
 [push]
   default=simple
