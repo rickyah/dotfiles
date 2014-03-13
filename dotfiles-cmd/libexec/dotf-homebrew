@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
 
 # Usage: dotf homebrew
-# Summary: Installs homebrew and some packages
+# Summary: Installs homebrew and some brew packages by default
 # Help: This will install homebrew and the packages defined in the 
 # file config/brew
 

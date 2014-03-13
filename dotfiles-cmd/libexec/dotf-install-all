@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Usage: dotf install-all
+# Summary: Installs all defaults configurations
+# Help: Equivalent to run the following commands (in the same order: 
+# dotf-homebrew, dotf-fonts, dotf-osx-defaults, dotf-zshell dotf-commands dotf-config-files
+
 echo 'This command will install all configuration fils in the system'
 echo 'Some commands may need some user input, so please follow the instructions on screen'
 echo

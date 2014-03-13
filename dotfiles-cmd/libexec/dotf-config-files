@@ -1,5 +1,9 @@
 #!/usr/bin/ruby
 
+# Usage: dotf config-files
+# Summary: Copies shell config files to the proper places to set the defaults
+# Help: Sets my default zshell config, paths, etc.
+
 require "#{ENV['_DOTF_ROOT']}/share/dotf/file_rsync"
 
 puts "---------------------------------------------------------------------------------"
