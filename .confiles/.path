@@ -1,8 +1,11 @@
 # default path
 PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
 
-# Add homebrew sbin folder to the `$PATH`
-PATH=/usr/local/sbin:$PATH
+# node 
+PATH=$PATH:$(npm config get prefix)/bin
+
+# brew
+PATH=$(brew --prefix)/bin:$(brew --prefix coreutils)/libexec/gnubin:$PATH
 
 # Add `~/bin` to the `$PATH`
 PATH=$HOME/bin:$PATH
@@ -10,18 +13,5 @@ PATH=$HOME/bin:$PATH
 # If there is bin folder in the current location, it takes preference
 # Usefull for binstubs in rails
 PATH=./bin:$PATH
-
-# brew
-PATH=$(brew --prefix)/bin:$(brew --prefix coreutils)/libexec/gnubin:$PATH
-
-# node 
-PATH=$PATH:$(npm config get prefix)/bin
-
-# Mysql
-PATH=$PATH:/usr/local/mysql/bin
-
-# rbenv
-PATH=~/.rbenv/bin:$PATH
-PATH=./bin:$PATH:
 
 export PATH
