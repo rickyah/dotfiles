@@ -12,7 +12,19 @@ unless gets.chomp =~ /^[Yy]/
     exit 2
 end
 
+puts
+puts "Updating configuration files in directory #{ENV['HOME']}/.confiles"
+puts "---------------------------------------------------------------------------------"
 FileRsync.new("./.confiles", "~/").rsync_files
+
+puts
+puts "Updating dotfiles in directory #{ENV['HOME']}"
+puts "---------------------------------------------------------------------------------"
 FileRsync.new("./.dotfiles/", "~/").rsync_files
+
+puts 
+puts "Updating #{ENV['HOME']}/.zshrc file"
+puts "---------------------------------------------------------------------------------"
+FileRsync.new(".zshrc", "~/.zshrc").rsync_files
 
 exit 0
