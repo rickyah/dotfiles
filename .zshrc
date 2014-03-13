@@ -27,7 +27,7 @@ ZSH_THEME="ricky"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment following line if you want to disable command autocorrection
-DISABLE_CORRECTION="false"
+DISABLE_CORRECTION="true"
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 COMPLETION_WAITING_DOTS="true"
@@ -40,6 +40,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
+plugins=(battery brew bundle colorize fasd gem gitfast jira node npm thor vagrant zeus)
 
 # load configuration files
 for file in ~/.confiles/.*; do
@@ -50,11 +51,7 @@ unset file
 # rbenv
 eval "$(rbenv init -)"
 
-plugins=(battery brew bundler colorize fasd gem gitfast jira node npm rbenv thor vagrant zeus)
-
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 RPROMPT='$(battery_pct_prompt)'
-
-
