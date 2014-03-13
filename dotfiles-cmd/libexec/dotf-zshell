@@ -1,4 +1,10 @@
 #!/usr/bin/ruby
+
+# Usage: dotf zshell
+# Summary: Installs oh-my-zshell
+# Help: It just clones the oh-my-zshell repo and sets some default configuration
+
+
 puts "---------------------------------------------------------------------------------"
 puts "Installing zshell and oh my zsh"
 puts "---------------------------------------------------------------------------------"

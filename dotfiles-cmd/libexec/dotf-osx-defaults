@@ -1,4 +1,9 @@
 #!/bin/bash
+
+# Usage: dotf osx-defaults
+# Summary: Set custom defaults configurations in OSX
+# Help: Based on http://mths.be/osx. See this files or that URL for more info.
+
 echo "---------------------------------------------------------------------------------"
 echo "Setting personal OSX defaults"
 echo "---------------------------------------------------------------------------------"

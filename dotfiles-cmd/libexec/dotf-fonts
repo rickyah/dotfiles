@@ -1,5 +1,9 @@
 #!/usr/bin/ruby
 
+# Usage: dotf fonts
+# Summary: Install special fonts used in some oh-my-shell skins
+# Help: Installed in the user's library folder.
+
 require "#{ENV['_DOTF_ROOT']}/share/dotf/file_rsync"
 
 puts "---------------------------------------------------------------------------------"

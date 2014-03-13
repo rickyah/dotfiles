@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+
+# Usage: dotf help
+# Summary: Shows help about a command
+# Help: This is the help for the help command. How meta! :)
 set -e
 
 print_summaries() {
