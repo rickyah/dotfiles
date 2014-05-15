@@ -4,8 +4,8 @@ PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
 # node 
 PATH=$PATH:$(npm config get prefix)/bin
 
-# brew
-PATH=$(brew --prefix)/bin:$(brew --prefix coreutils)/libexec/gnubin:$PATH
+# homebrew
+PATH=$(brew --prefix)/bin:$(brew --prefix)/sbin:$(brew --prefix coreutils)/libexec/gnubin:$PATH
 
 # Add `~/bin` to the `$PATH`
 PATH=$HOME/bin:$PATH
