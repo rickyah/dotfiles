@@ -57,8 +57,10 @@ puts "Installing more recent versions of some OS X tools"
 system('brew tap homebrew/dupes')
 system('brew install homebrew/dupes/grep')
 
-puts "Installing git & git-flow"
+puts "Installing git & git-flow & git-hub"
 system('brew install git')
+system('brew install git-flow-avh')
+system('brew install hub')
 
 puts "Installing imagemagick"
 system('brew install imagemagick')
