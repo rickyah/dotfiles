@@ -29,7 +29,7 @@
   excludesfile = ~/.global_gitignore
   editor = subl -w
   mergeoptions = --no-ff --no-commit
-  
+  autocrlf = input 
 [difftool "sourcetree"]
   cmd = opendiff \"$LOCAL\" \"$REMOTE\"
   path = 
