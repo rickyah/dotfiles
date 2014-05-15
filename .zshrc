@@ -42,6 +42,9 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(battery brew bundle colorize fasd gem gitfast jira node npm pod thor vagrant zeus)
 
+# register homebrew completions folder
+fpath=('/usr/local/share/zsh/site-functions/' $fpath)
+
 # load configuration files
 for file in ~/.confiles/.*; do
     [ -r "$file" ] && source "$file"
