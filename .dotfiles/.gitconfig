@@ -73,7 +73,7 @@
   c = commit
   cm = commit -m
   cma = commit -am
-  f = fetch
+  f = fetch --prune
   ps = push
   pl = pull
   l = "!f() { git log $1 --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit; }; f"
