@@ -25,6 +25,10 @@
   # Include summaries of merged commits in newly created merge commit messages
   log = true
 
+[svn]
+  # push empty directory removals back to svn as directory deletes
+  rmdir = true
+
 [core]
   excludesfile = ~/.global_gitignore
   editor = subl -w
