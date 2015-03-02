@@ -16,4 +16,4 @@ export LC_ALL="es_ES.UTF-8"
 export LESS_TERMCAP_md="$ORANGE"
 
 # Don’t clear the screen after quitting a manual page
-export MANPAGER="less -X"
+export MANPAGER="less -RFX"
