@@ -1,0 +1,7 @@
+# Use less as pager
+--pager=less
+# Always color, even if piping to a another program
+--color
+
+# Ignore jetbrains IDEs folders
+--ignore-dir=.idea/
