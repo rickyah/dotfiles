@@ -3,5 +3,7 @@
 # Always color, even if piping to a another program
 --color
 
+# Sort files
+--sort-files
 # Ignore jetbrains IDEs folders
 --ignore-dir=.idea/
