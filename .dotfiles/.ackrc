@@ -5,5 +5,9 @@
 
 # Sort files
 --sort-files
+
 # Ignore jetbrains IDEs folders
 --ignore-dir=.idea/
+
+# search inside Unity3D files
+--type-set=unity3d=.prefab,.scene
