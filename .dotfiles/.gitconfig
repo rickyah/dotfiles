@@ -90,7 +90,7 @@
   pl = pull
   pr = pull-request
   # status & log
-  s = status -s
+  s = status -sb
   ss = status
   l = "!f() { git log $1 --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit; }; f"
   lg = "!f() { git log $1 --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit;};f"
