@@ -100,6 +100,8 @@
   di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
   #show changes
   wc = whatchanged -p --abbrev-commit --pretty=medium
+  r = reset
+  rhh = reset HEAD --hard
 
 
 [push]
