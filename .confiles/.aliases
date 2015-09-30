@@ -23,9 +23,9 @@ alias be='bundle exec'
 alias bi='bundle install'
 
 # hub tool 
-if hash hub 2>/dev/null; then
-  alias git='hub'
-fi
+# if hash hub 2>/dev/null; then
+#   alias git='hub'
+# fi
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
