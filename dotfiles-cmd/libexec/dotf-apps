@@ -44,7 +44,7 @@ end
 
 
 apps_to_install = File.read("#{ENV["_DOTF_ROOT"]}/share/brew-cask-list.txt")
-  .split
+  .split("\n")
   .select{|line| !line.start_with?('#') && !line.empty? }
 
 if (apps_to_install.empty?)
