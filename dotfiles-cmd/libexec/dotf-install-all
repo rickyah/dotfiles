@@ -9,7 +9,7 @@ echo 'This command will install all configuration fils in the system'
 echo 'Some commands may need some user input, so please follow the instructions on screen'
 echo
 
-"$_DOTF_ROOT"/libexec/dotf-homebrew --upgrade
+"$_DOTF_ROOT"/libexec/dotf-homebrew
 echo
 
 "$_DOTF_ROOT"/libexec/dotf-fonts
