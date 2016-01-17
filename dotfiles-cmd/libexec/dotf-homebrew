@@ -34,12 +34,10 @@ unless %x(command #{app_cmd} 2> /dev/null)
 
 else
   puts "#{app_name} is already installed: version #{%x(#{app_cmd} --version)}"
-
 end
 
 puts "Updating homebrew to make sure we’re using the latest version"
 system('brew update')
-
 
 puts "Installing GNU core utilities (those that come with OS X are outdated)"
 system('brew install coreutils')

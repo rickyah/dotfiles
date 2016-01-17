@@ -26,3 +26,6 @@ echo
 
 "$_DOTF_ROOT"/libexec/dotf-config-files
 echo
+
+"$_DOTF_ROOT"/libexec/dotf-apps
+echo

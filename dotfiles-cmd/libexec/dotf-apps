@@ -1,0 +1,66 @@
+#!/usr/bin/ruby
+
+# Usage: dotf apps
+# Summary: Installs homebrew cask and install several apps 
+# Help: This will install homebrew cask and the packages defined in the 
+# file config/brew
+
+# install brew if it does not exists
+doUpgrade = (ARGV.include?('--upgrade') || ARGV.include?('-u'))
+
+app_name = "Homebrew Cask + Apps"
+app_cmd = "brew cask"
+app_install_cmd = 'brew install cask'
+check_app_installation = `type $app_cmd &>/dev/null`.empty?
+
+puts "---------------------------------------------------------------------------------"
+puts "This script installs #{app_name} if it is not installed"
+puts "---------------------------------------------------------------------------------"
+
+unless %x(command #{"brew"} 2> /dev/null)
+  puts "Homebrew was not found in the system, To install it use the command 'dotf homebrew'"
+  exit 2
+end
+
+unless %x(command #{app_cmd} 2> /dev/null)
+  # brew cask not found, ask user if we should install it
+  puts "#{app_name} was not found in the system, To install it, this command needs be executed:"
+  puts "app_install_cmd"
+
+  puts "Do you want me to install it? (y/n)"
+
+  if gets.chomp =~ /^[Yy]/
+    puts "Ok, installing #{app_name}"
+    system app_install_cmd
+  else
+    puts "Aborting"
+    exit 2
+  end
+
+else
+  puts "#{app_name} is already installed: version #{%x(#{app_cmd} --version)}"
+end
+
+
+
+apps_to_install = File.read("#{ENV["_DOTF_ROOT"]}/share/brew-cask-list.txt")
+  .split
+  .select{|line| !line.start_with?('#') && !line.empty? }
+
+if (apps_to_install.empty?)
+  puts "The list of apps to install is empty."
+  puts "Please put the apps to install with Homebrew cask in the file brew-cask-list.txt located in the share folder"
+  exit 2
+end
+
+# add reference to more app versions
+system "brew tap caskroom/versions"
+
+apps_to_install.each do |app_name|
+  puts "Installing #{app_name}"
+  system "#{app_cmd} install #{app_name}"
+end
+
+system "#{app_cmd} cleanup"
+
+puts "Done!"
