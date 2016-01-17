@@ -6,8 +6,6 @@
 # file config/brew
 
 # install brew if it does not exists
-doUpgrade = (ARGV.include?('--upgrade') || ARGV.include?('-u'))
-
 app_name = "Homebrew"
 app_cmd = "brew"
 app_install_cmd = 'ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"'
@@ -68,11 +66,6 @@ system('brew install node')
 
 puts "Removing outdated versions from the cellar"
 system('brew cleanup')
-
-if (doUpgrade)
-    puts "Upgrading already-installed formulae"
-    system('brew upgrade')
-end 
 
 puts "Done"
 puts "Don’t forget to add $(brew --prefix coreutils)/libexec/gnubin to \$PATH."
