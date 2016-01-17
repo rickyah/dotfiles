@@ -17,12 +17,12 @@ puts "--------------------------------------------------------------------------
 puts "This script installs #{app_name} if it is not installed"
 puts "---------------------------------------------------------------------------------"
 
-unless %x(command #{"brew"} 2> /dev/null)
+if %x(command #{"brew"} 2> /dev/null).empty?
   puts "Homebrew was not found in the system, To install it use the command 'dotf homebrew'"
   exit 2
 end
 
-unless %x(command #{app_cmd} 2> /dev/null)
+if %x(command #{app_cmd} 2> /dev/null).empty?
   # brew cask not found, ask user if we should install it
   puts "#{app_name} was not found in the system, To install it, this command needs be executed:"
   puts "app_install_cmd"
