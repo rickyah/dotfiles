@@ -1,0 +1,20 @@
+# list of apps to be installed with the command dotf apps (via homebrew cask)
+# each line must contain the name of one application
+google-chrome
+sublime-text3
+macdown
+quicklook-json
+alfred
+day-o
+iterm2
+licecap
+mysqlworkbench
+hex-fiend
+sourcetree
+spectacle
+stay
+visual-studio-code
+diffmerge
+daisydisk
+dropbox
+copy
