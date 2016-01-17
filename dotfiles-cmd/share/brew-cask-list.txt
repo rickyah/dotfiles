@@ -19,3 +19,4 @@ daisydisk
 dropbox
 copy
 xquartz
+spotify
