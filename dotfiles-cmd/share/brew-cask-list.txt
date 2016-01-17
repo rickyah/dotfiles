@@ -18,3 +18,4 @@ diffmerge
 daisydisk
 dropbox
 copy
+xquartz
