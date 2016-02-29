@@ -40,7 +40,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(battery brew bundle colorize fasd gem svn gitfast jira node npm osx pod thor vagrant zeus)
+plugins=(battery brew bundle colorize fasd gem svn gitfast jira node npm osx pod thor vagrant zeus colored-man-pages)
 
 # register homebrew completions folder
 fpath=('/usr/local/share/zsh/site-functions/' $fpath)
