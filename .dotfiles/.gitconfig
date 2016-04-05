@@ -59,7 +59,7 @@
   b = branch
   ba = branch -a
   bd = branch -d
-  bD = branch -D
+  bfd = branch -D
   bm = branch -m
   re = remote
   rea = remote -v
