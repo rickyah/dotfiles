@@ -86,6 +86,8 @@
   cma = commit -am
   # pushes & pulls
   f = fetch --prune
+  # always prune remote branches
+  fetch = fetch --prune
   ps = push
   # push the current locla branch to origin and track it
   psnb = "!f() { git push origin $(git rev-parse --abbrev-ref HEAD) --set-upstream;}; f"
