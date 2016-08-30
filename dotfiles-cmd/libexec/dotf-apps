@@ -5,11 +5,15 @@
 # Help: This will install homebrew cask and the packages defined in the 
 # file config/brew
 
+
+require 'mkmf'
+
 # install brew if it does not exists
 doUpgrade = (ARGV.include?('--upgrade') || ARGV.include?('-u'))
 
 app_name = "Homebrew Cask + Apps"
-app_cmd = "brew cask"
+brew_cmd = "brew"
+app_cmd = "#{brew_cmd} cask"
 app_install_cmd = 'brew install cask'
 check_app_installation = `type $app_cmd &>/dev/null`.empty?
 
@@ -17,7 +21,7 @@ puts "--------------------------------------------------------------------------
 puts "This script installs #{app_name} if it is not installed"
 puts "---------------------------------------------------------------------------------"
 
-if %x(command #{"brew"} 2> /dev/null).empty?
+if find_executable(brew_cmd).nil?
   puts "Homebrew was not found in the system, To install it use the command 'dotf homebrew'"
   exit 2
 end
