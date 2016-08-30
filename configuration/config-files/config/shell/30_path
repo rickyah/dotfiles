@@ -1,0 +1,28 @@
+# default path
+PATH=PATH:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin
+
+# Add ~/bin and ./bin into path
+PATH=$PATH:$HOME/bin:./bin
+
+# dotnet core path
+PATH=$PATH:/usr/local/share/dotnet
+
+# mono path
+MONO_PATH=/Library/Frameworks/Mono.framework/Versions/Current/bin
+export MONO_PATH
+PATH=$PATH:$MONO_PATH
+
+ANDROID_SDK_ROOT=/usr/local/share/android-sdk
+ANDROID_NDK_HOME=/usr/local/share/android-ndk
+export ANDROID_SDK_ROOT
+export ANDROID_NDK_HOME
+
+PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin
+
+# fastlane
+PATH=$PATH:~/.fastlane/bin
+
+# .NET Core SDK tools
+PATH=$PATH:~/.dotnet/tools
+
+export PATH

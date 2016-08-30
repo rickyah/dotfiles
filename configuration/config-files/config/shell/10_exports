@@ -1,0 +1,43 @@
+# Make nvim the default editor
+export EDITOR="nvim"
+
+# Larger bash history (allow 32³ entries; default is 500)
+export HISTSIZE=32768
+export HISTFILESIZE=$HISTSIZE
+export HISTCONTROL=ignoredups
+
+# Make some commands not show up in history
+export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
+
+export LANG="en_US"
+export LC_ALL="en_US.UTF-8"
+
+# Highlight section titles in manual pages
+export LESS_TERMCAP_md="$ORANGE"
+
+# Don’t clear the screen after quitting a manual page
+export MANPAGER="less -RFX"
+
+# FZ options
+FD_OPTIONS="--exclude .git" 
+FZF_PREVIEW_OPTIONS="--preview 'bat --style=numbers --color=always {}' --bind='f2:toggle-preview' --preview-window='right:hidden:wrap'"
+export FZF_DEFAULT_OPTS="--height 40% $FZF_PREVIEW_OPTIONS"
+export FZF_DEFAULT_COMMAND="fd --type f --type l $FD_OPTIONS"
+
+# ripgrep requires setting this envvar to load custom configuration
+# see https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file
+export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/rgrc"
+
+#export Java
+export JAVA_HOME=$(/usr/libexec/java_home -v"1.8")
+
+# Android SDK
+export ANDROID_SDK_ROOT="/usr/local/share/android-sdk" 
+
+# Android NDK
+export ANDROID_NDK_ROOT="/usr/local/share/android-ndk"
+
+# Omnisharp for VS Code requires this to find the reference assemblies
+# This fixes 
+# Error: The reference assemblies for .NETFramework,Version=v4.7.1 were not found
+export FrameworkPathOverride=/Library/Frameworks/Mono.framework/Versions/Current
