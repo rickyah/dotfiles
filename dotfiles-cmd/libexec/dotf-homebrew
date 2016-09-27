@@ -3,20 +3,23 @@
 # Usage: dotf homebrew
 # Summary: Installs homebrew and some brew packages by default
 # Help: This will install homebrew and the packages defined in the 
-# file config/brew
+# file shared/brew-app-list.txt
 
-# install brew if it does not exists
+require 'mkmf'
+
 app_name = "Homebrew"
 app_cmd = "brew"
 app_install_cmd = 'ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"'
-check_app_installation = `type $app_cmd &>/dev/null`.empty?
+
+app_list_filepath = "#{ENV["_DOTF_ROOT"]}/share/brew-app-list.txt"
 
 puts "---------------------------------------------------------------------------------"
 puts "This script installs #{app_name} if it is not installed"
 puts "---------------------------------------------------------------------------------"
 
-if %x(command #{app_cmd} 2> /dev/null).empty?
-  # brew not found, ask user if we should install it
+
+if find_executable(app_cmd).nil?
+
   puts "#{app_name} was not found in the system, To install it, this command needs be executed:"
   puts app_install_cmd
 
@@ -31,38 +34,29 @@ if %x(command #{app_cmd} 2> /dev/null).empty?
   end
 
 else
-  puts "#{app_name} is already installed: version #{%x(#{app_cmd} --version)}"
+  puts "Found #{app_name} in the system: version #{%x(#{app_cmd} --version)}"
+end
+
+apps_to_install = File.read(app_list_filepath)
+  .split("\n")
+  .select{|line| !line.start_with?('#') && !line.empty? }
+
+if (apps_to_install.empty?)
+  puts "The list of apps to install is empty."
+  puts "Please put the apps to install with #{app_name} in the file brew-app-list.txt located in the share folder"
+  exit 2
 end
 
 puts "Updating homebrew to make sure we’re using the latest version"
 system('brew update')
+system('tap homebrew/dupes')
 
-puts "Installing GNU core utilities (those that come with OS X are outdated)"
-system('brew install coreutils')
-
-puts "Installing GNU 'find', 'locate', 'updatedb', and 'xargs', g-prefixed"
-system('brew install findutils')
-
-puts "Installing Bash 4"
-system('brew install bash')
-
-puts "Installing wget"
-system('brew install wget')
-
-puts "Installing more recent versions of some OS X tools"
-system('brew tap homebrew/dupes')
-system('brew install homebrew/dupes/grep')
-
-puts "Installing git & git-flow & git-hub"
-system('brew install git')
-system('brew install git-flow-avh')
-system('brew install hub')
-
-puts "Installing imagemagick"
-system('brew install imagemagick')
-
-puts "Installing node"
-system('brew install node')
+apps_to_install.each do |app_name|
+  puts "Installing #{app_name}"
+  unless system "#{app_cmd} install #{app_name}"
+    puts "Couldn't find #{app_name} skipping..."
+  end
+end
 
 puts "Installing highlight"
 system('brew install highlight')

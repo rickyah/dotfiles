@@ -1,0 +1,14 @@
+# list of apps to be installed with the command dotf apps (via homebrew cask)
+# each line must contain the name of one application
+coreutils
+findutils
+bash
+wget
+homebrew/dupes/grep
+git
+git-flow-avh
+hub
+imagemagick
+node
+fasd
+ack
