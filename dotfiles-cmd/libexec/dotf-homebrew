@@ -58,9 +58,6 @@ apps_to_install.each do |app_name|
   end
 end
 
-puts "Installing highlight"
-system('brew install highlight')
-
 puts "Removing outdated versions from the cellar"
 system('brew cleanup')
 
