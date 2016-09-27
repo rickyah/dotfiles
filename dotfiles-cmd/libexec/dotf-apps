@@ -3,19 +3,16 @@
 # Usage: dotf apps
 # Summary: Installs homebrew cask and install several apps 
 # Help: This will install homebrew cask and the packages defined in the 
-# file config/brew
-
+# file shared/brew-cask-list.txt
 
 require 'mkmf'
 
-# install brew if it does not exists
-doUpgrade = (ARGV.include?('--upgrade') || ARGV.include?('-u'))
-
-app_name = "Homebrew Cask + Apps"
+app_name = "Homebrew Cask"
 brew_cmd = "brew"
 app_cmd = "#{brew_cmd} cask"
 app_install_cmd = 'brew install cask'
-check_app_installation = `type $app_cmd &>/dev/null`.empty?
+
+app_list_filepath = "#{ENV["_DOTF_ROOT"]}/share/brew-cask-list.txt"
 
 puts "---------------------------------------------------------------------------------"
 puts "This script installs #{app_name} if it is not installed"
@@ -26,8 +23,8 @@ if find_executable(brew_cmd).nil?
   exit 2
 end
 
-if %x(command #{app_cmd} 2> /dev/null).empty?
-  # brew cask not found, ask user if we should install it
+if find_executable(app_cmd).nil?
+
   puts "#{app_name} was not found in the system, To install it, this command needs be executed:"
   puts "app_install_cmd"
 
@@ -42,12 +39,12 @@ if %x(command #{app_cmd} 2> /dev/null).empty?
   end
 
 else
-  puts "#{app_name} is already installed: version #{%x(#{app_cmd} --version)}"
+  puts "Found #{app_name} in the system: version #{%x(#{app_cmd} --version)}"
 end
 
 
 
-apps_to_install = File.read("#{ENV["_DOTF_ROOT"]}/share/brew-cask-list.txt")
+apps_to_install = File.read(app_list_filepath)
   .split("\n")
   .select{|line| !line.start_with?('#') && !line.empty? }
 
@@ -62,7 +59,9 @@ system "brew tap caskroom/versions"
 
 apps_to_install.each do |app_name|
   puts "Installing #{app_name}"
-  system "#{app_cmd} install #{app_name}"
+  unless system "#{app_cmd} install #{app_name}"
+      puts "Couldn't find #{app_name} skipping..."
+  end
 end
 
 system "#{app_cmd} cleanup"
