@@ -53,8 +53,19 @@
   ct = checkout -t
   cr = checkout --
   unstage = reset HEAD
+  
   # submodules
-  sm = "!f() { git submodule update --init --recursive $1; }; f"
+  sm = submodule
+
+  # update  submodules
+  smu = "!f() { git submodule update --init --recursive $1; }; f"
+
+  # better submodule status
+  sms = "!f() { \
+          git --no-pager submodule foreach --recursive --quiet 'git show HEAD --no-patch --format=\"%C(magenta)$name%C(yellow) ->%d%n%C(red)%h%C(reset) - %s %C(green)(%cr) %C(bold blue)<%an>%C(reset)\"'; \
+       }; \
+  f"
+
   #branch management
   b = branch
   ba = branch -a
