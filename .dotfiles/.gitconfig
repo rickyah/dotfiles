@@ -70,6 +70,7 @@
   b = branch
   ba = branch -a
   bd = branch -d
+  bdr = branch -d --remote
   bfd = branch -D
   bm = branch -m
   re = remote
