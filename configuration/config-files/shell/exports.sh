@@ -24,4 +24,9 @@ FZF_PREVIEW_OPTIONS="--preview 'bat --style=numbers --color=always {}' --bind='f
 export FZF_DEFAULT_OPTS="--height 40% $FZF_PREVIEW_OPTIONS"
 export FZF_DEFAULT_COMMAND="fd --type f --type l $FD_OPTIONS"
 
+# android SDK & NDK
+export ANDROID_SDK=/usr/local/opt/android-sdk
+export ANDROID_NDK=/usr/local/opt/android-ndk
 
+export ANDROID_HOME=$ANDROID_SDK
+export NDK=$ANDROID_NDK
