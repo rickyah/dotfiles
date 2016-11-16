@@ -104,7 +104,7 @@
   ps = push
   # push the current locla branch to origin and track it
   psnb = "!f() { git push origin $(git rev-parse --abbrev-ref HEAD) --set-upstream;}; f"
-  pl = pull
+  pl = pull --prune
   pr = pull-request
   # status & log
   s = status -sb
