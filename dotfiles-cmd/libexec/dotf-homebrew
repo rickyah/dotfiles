@@ -64,8 +64,13 @@ system('brew install imagemagick')
 puts "Installing node"
 system('brew install node')
 
+puts "Installing highlight"
+system('brew install highlight')
+
 puts "Removing outdated versions from the cellar"
 system('brew cleanup')
+
+
 
 puts "Done"
 puts "Don’t forget to add $(brew --prefix coreutils)/libexec/gnubin to \$PATH."
