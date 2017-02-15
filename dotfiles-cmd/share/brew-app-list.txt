@@ -12,3 +12,4 @@ imagemagick
 node
 fasd
 ack
+highlight
