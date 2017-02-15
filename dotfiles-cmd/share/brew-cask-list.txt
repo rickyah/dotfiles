@@ -19,3 +19,5 @@ daisydisk
 dropbox
 xquartz
 spotify
+magicavoxel
+slack
