@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
 
 # Usage: dotf apps
 # Summary: Installs homebrew cask and install several apps 
@@ -6,27 +6,31 @@
 # file shared/brew-cask-list.txt
 
 require 'mkmf'
+require 'pry'
 
 app_name = "Homebrew Cask"
-brew_cmd = "brew"
-app_cmd = "#{brew_cmd} cask"
+app_cmd = "brew cask"
 app_install_cmd = 'brew install cask'
+cask_mas_install_cmd = 'brew install mas'
 
 app_list_filepath = "#{ENV["_DOTF_ROOT"]}/share/brew-cask-list.txt"
+mas_app_list_filepath = "#{ENV["_DOTF_ROOT"]}/share/brew-mas-app-list.txt"
 
 puts "---------------------------------------------------------------------------------"
 puts "This script installs #{app_name} if it is not installed"
 puts "---------------------------------------------------------------------------------"
 
-if find_executable(brew_cmd).nil?
+# Prerequisites
+if find_executable("brew").nil?
   puts "Homebrew was not found in the system, To install it use the command 'dotf homebrew'"
   exit 2
 end
 
-if find_executable(app_cmd).nil?
+is_cask_installed = !`brew info cask | grep "cask" >/dev/null 2>&1`.nil?
 
+if !is_cask_installed
   puts "#{app_name} was not found in the system, To install it, this command needs be executed:"
-  puts "app_install_cmd"
+  puts "#{app_install_cmd}"
 
   puts "Do you want me to install it? (y/n)"
 
@@ -42,25 +46,51 @@ else
   puts "Found #{app_name} in the system: version #{%x(#{app_cmd} --version)}"
 end
 
-
+puts
+puts "-------------------------------------"
+puts "Installing homebrew cask applications"
+puts "-------------------------------------"
+puts
 
 apps_to_install = File.read(app_list_filepath)
   .split("\n")
-  .select{|line| !line.start_with?('#') && !line.empty? }
+  .select{|line| !line.empty? && !line.start_with?('#')}
 
 if (apps_to_install.empty?)
   puts "The list of apps to install is empty."
   puts "Please put the apps to install with Homebrew cask in the file brew-cask-list.txt located in the share folder"
-  exit 2
+else
+  # add reference to more app versions
+  system "brew tap caskroom/versions"
+
+  apps_to_install.each do |app_name|
+    puts "Installing #{app_name}"
+    unless system "brew cask install #{app_name}"
+        puts "Couldn't find #{app_name} skipping..."
+    end
+  end
 end
 
-# add reference to more app versions
-system "brew tap caskroom/versions"
+puts
+puts "-------------------------------------"
+puts "Installing Mac App Store applications"
+puts "-------------------------------------"
+puts
 
-apps_to_install.each do |app_name|
-  puts "Installing #{app_name}"
-  unless system "#{app_cmd} install #{app_name}"
-      puts "Couldn't find #{app_name} skipping..."
+mas_app_list = File.read(mas_app_list_filepath)
+  .split("\n")
+  .select{|line| !line.empty? && !line.start_with?('#')}
+  .map{|line| line.split("#") }
+
+if (mas_app_list.empty?)
+  puts "The list of Mac App Store apps to install is empty."
+  puts "Please put the apps to install with Homebrew cask in the file brew-mas-list.txt located in the share folder"
+else
+  mas_app_list.each do |app_data_arr|
+    puts "Installing #{app_data_arr.last}"
+    unless system "#brew mas install #{app_data_arr.first}"
+        puts "Couldn't find #{app_data_arr.last} skipping..."
+    end
   end
 end
 

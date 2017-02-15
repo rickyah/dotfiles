@@ -21,7 +21,7 @@ puts "--------------------------------------------------------------------------
 if find_executable(app_cmd).nil?
 
   puts "#{app_name} was not found in the system, To install it, this command needs be executed:"
-  puts app_install_cmd
+  puts "#{app_install_cmd}"
 
   puts "Do you want me to install it? (y/n)"
 
