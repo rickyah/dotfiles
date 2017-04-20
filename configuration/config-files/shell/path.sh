@@ -9,7 +9,7 @@ PATH=$PATH:$CURRENT_DIR_BIN_PATH:$DOTNET_CORE_PATH:$MONO_PATH
 
 export MONO_PATH
 
-# android skd
-PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+# android SDK & NDK
+PATH=$PATH:$ANDROID_SDK/bin:$ANDROID_SDK/tools:$ANDROID_SDK/platform-tools:$ANDROID_NDK/bin
 
 export PATH
