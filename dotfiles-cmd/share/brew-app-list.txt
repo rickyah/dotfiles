@@ -4,7 +4,6 @@ coreutils
 findutils
 bash
 wget
-homebrew/dupes/grep
 git
 git-flow-avh
 hub
@@ -13,3 +12,5 @@ node
 fasd
 ack
 highlight
+ripgrep
+
