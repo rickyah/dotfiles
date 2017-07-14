@@ -116,11 +116,10 @@
   # status & log
   s = status -sb
   ss = status
-  # Log oneline with more information
-  # # l = "!f() { git log $1 --pretty=format:'%Cred%h%Creset - %<(90,trunc)%s %Cgreen(%cr) %C(bold blue)<%an>%Creset%C(yellow)%+d' --abbrev-commit; }; f"
-  l = "!f() { git log $1 --pretty=format:'%Cred%h%Creset %<(75,trunc)%s %Cgreen(%cr) %C(bold blue)<%an>%Creset %n%-d' --abbrev-commit;}; f"
+# Log oneline with more information
+  l = "!f() { git log $1 --pretty=format:'%Cred%h%Creset %<(75,trunc)%s %Cgreen%<(12,trunc)%cr %<(16,trunc)%C(bold blue)%an%Creset %<(45,trunc) %C(yellow)%D';}; f"
   # log oneline showing graph
-  lg = "!f() { git log $1 --graph --pretty=format:'%Cred%h%Creset - %<(52,trunc)%s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit;};f"
+  lg = "!f() { git log $1 --graph --pretty=format:'%>|(20)%Cred%h%Creset - %<(52,trunc)%s %Cgreen%cr %<(16,trunc)%C(bold blue)%an%Creset%<(45,trunc) %C(yellow)%D';};f"
   # show tracked branches
   tracked = "!d() { git for-each-ref --format='%(refname:short)' refs/heads/ | while read b; do if r=$(git config --get branch.$b.remote); then m=$(git config --get branch.$b.merge); echo \"$b -> $r/${m##*/}\"; fi; done } ; d"
   # `git di $number` shows the diff between the state `$number` revisions ago and the current state
