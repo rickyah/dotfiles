@@ -10,7 +10,7 @@ ZSH=$HOME/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 # ZSH_THEME="agnoster"
 source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
-DEFAULT_USER=ricky
+DEFAULT_USER=rickyah
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
