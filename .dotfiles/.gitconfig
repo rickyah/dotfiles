@@ -116,8 +116,8 @@
   # status & log
   s = status -sb
   ss = status
-# Log oneline with more information
-  l = "!f() { git log $1 --pretty=format:'%Cred%h%Creset %<(75,trunc)%s %Cgreen%<(12,trunc)%cr %<(16,trunc)%C(bold blue)%an%Creset %<(45,trunc) %C(yellow)%D';}; f"
+  # Log oneline with more information
+  l = "!f() { git log $1 --pretty=format:'%Cred%h%Creset %<(75,trunc)%s %Cgreen%<(16,trunc)%cd %<(16,trunc)%C(bold blue)%an%Creset %<(45,trunc) %C(yellow)%D' --date=format:'%d-%b-%y %H:%M';}; f"
   # log oneline showing graph
   lg = "!f() { git log $1 --graph --pretty=format:'%>|(20)%Cred%h%Creset - %<(52,trunc)%s %Cgreen%cr %<(16,trunc)%C(bold blue)%an%Creset%<(45,trunc) %C(yellow)%D';};f"
   # show tracked branches
