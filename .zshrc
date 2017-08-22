@@ -1,3 +1,6 @@
+# uncomment this to profile startup time
+# zmodload zsh/zprof
+
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
@@ -41,16 +44,14 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(battery 
-brew 
-bundle 
-colorize 
-fasd 
-gem 
-gitfast 
-osx 
-zeus 
-colored-man-pages)
+plugins=(battery
+notify
+brew
+colorize
+gitfast
+osx
+colored-man-pages
+z)
 
 # register homebrew completions folder
 fpath=('/usr/local/share/zsh/site-functions/' $fpath)
