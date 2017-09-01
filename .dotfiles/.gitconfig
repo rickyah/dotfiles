@@ -37,7 +37,7 @@
   editor = code -w
   mergeoptions = --no-ff --no-commit
   autocrlf = input 
-  pager = less -x1,5
+  pager = less -F -x1,5
 
 [difftool "sourcetree"]
   cmd = opendiff \"$LOCAL\" \"$REMOTE\"
