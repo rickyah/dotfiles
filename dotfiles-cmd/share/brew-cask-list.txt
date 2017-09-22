@@ -21,3 +21,4 @@ xquartz
 spotify
 magicavoxel
 slack
+dotnet
