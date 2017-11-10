@@ -8,6 +8,6 @@ PATH=$HOME/bin:$PATH
 PATH=./bin:$PATH
 
 # dotnet core path
-PATH=$PATH:/usr/local/share/dotnet/
+PATH=$PATH:/usr/local/share/dotnet
 
 export PATH
