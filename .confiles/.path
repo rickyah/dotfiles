@@ -1,5 +1,5 @@
 # default path
-PATH=/usr/local/bin/:/usr/bin:/bin:/usr/sbin:/sbin
+PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
 # Add `~/bin` to the `$PATH`
 PATH=$HOME/bin:$PATH
