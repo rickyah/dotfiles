@@ -33,7 +33,7 @@
   rmdir = true
 
 [core]
-  excludesfile = ~/.global_gitignore
+  excludesfile = ~/.gitignore_global
   editor = code -w
   mergeoptions = --no-ff --no-commit
   autocrlf = input 
