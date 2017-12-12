@@ -1,11 +1,8 @@
 # default path
-PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin
 
-# Add `~/bin` to the `$PATH`
-PATH=$HOME/bin:$PATH
-
-# If there is bin folder in the current location, it takes preference
-PATH=./bin:$PATH
+# Add ~/bin and ./bin nto path
+PATH=$PATH:$HOME/bin:./bin
 
 # dotnet core path
 PATH=$PATH:/usr/local/share/dotnet
