@@ -1,17 +1,14 @@
-# list of apps to be installed with the command dotf apps (via homebrew cask)
-# each line must contain the name of one application
+# list of tools to be installed with the command dotf apps (via homebrew)
+# each line must contain the name of one tool
 coreutils
 findutils
 bash
 wget
 git
-git-flow-avh
 hub
 imagemagick
 node
-fasd
-ack
 highlight
 ripgrep
 mono
-
+diff-so-fancy

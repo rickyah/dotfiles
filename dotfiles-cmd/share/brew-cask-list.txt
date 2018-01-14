@@ -1,11 +1,10 @@
 # list of apps to be installed with the command dotf apps (via homebrew cask)
 # each line must contain the name of one application
 google-chrome
-sublime-text
 macdown
 quicklook-json
 alfred
-day-o
+itsycal
 iterm2
 licecap
 mysqlworkbench

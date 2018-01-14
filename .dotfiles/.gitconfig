@@ -37,7 +37,7 @@
   editor = code -w
   mergeoptions = --no-ff --no-commit
   autocrlf = input 
-  pager = less -FX
+  pager = "diff-so-fancy | less -FX"
 
 [difftool "sourcetree"]
   cmd = opendiff \"$LOCAL\" \"$REMOTE\"
@@ -79,7 +79,7 @@
   ba = branch -a
   bd = branch -d
   bdr = branch -d --remote
-  bfd = branch -D
+  bd-f = branch -D
   bm = branch -m
   re = remote
   rea = remote -v
