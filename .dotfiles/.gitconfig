@@ -41,7 +41,7 @@
 
 [difftool "sourcetree"]
   cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-  path = 
+  path =
 
 [mergetool "sourcetree"]
   cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
@@ -77,10 +77,12 @@
   #branch management
   b = branch
   ba = branch -a
-  bd = branch -d
-  bdr = branch -d --remote
-  bd-f = branch -D
-  bm = branch -m
+  brml = branch -d
+  brmr = branch -d --remote
+  brml-f = branch -D
+  brma = "!f() { git branch -d $1 && git branch -d --remote origin/$1; }; f"
+  bmv = branch -m
+  # remotes
   re = remote
   rea = remote -v
   #rebases & squash
