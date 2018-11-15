@@ -63,7 +63,9 @@ done
 unset file
 
 # rbenv
-eval "$(rbenv init -)"
+if type "rbenv" > /dev/null; then
+    eval "$(rbenv init -)"
+fi
 
 source $ZSH/oh-my-zsh.sh
 
