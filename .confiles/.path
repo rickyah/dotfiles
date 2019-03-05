@@ -1,7 +1,7 @@
 # default path
 PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin
 
-# Add ~/bin and ./bin nto path
+# Add ~/bin and ./bin into path
 PATH=$PATH:$HOME/bin:./bin
 
 # dotnet core path
