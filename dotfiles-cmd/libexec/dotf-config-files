@@ -19,14 +19,14 @@ unless gets.chomp =~ /^[Yy]/
 end
 
 puts
-puts "Updating configuration files in directory #{ENV['HOME']}/.config/shell"
+puts "Updating configuration files in directory #{ENV['HOME']}/.config/"
 puts "---------------------------------------------------------------------------------"
-FileRsync.new("#{ENV["_DOTF_ROOT"]}/share/configuration_files/config", "~/.config/shell").rsync_files
+FileRsync.new("#{ENV["_DOTF_ROOT"]}/share/configuration_files/config/", "~/.config/").rsync_files
 
 puts
 puts "Updating dotfiles in directory #{ENV['HOME']}"
 puts "---------------------------------------------------------------------------------"
-FileRsync.new("#{ENV["_DOTF_ROOT"]}/share/configuration_filesroot/", "~/").rsync_files
+FileRsync.new("#{ENV["_DOTF_ROOT"]}/share/configuration_files/root/", "~/").rsync_files
 
 
 exit 0

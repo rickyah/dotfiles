@@ -31,6 +31,7 @@ fi
 # bat tool 
 if hash bat 2>/dev/null; then
   alias cat='bat'
+  export BAT_CONFIG_PATH="~/.batrc"
 fi
 
 # IP addresses
