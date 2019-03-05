@@ -1,16 +1,17 @@
+
 # Postgre SQL
-alias pgon='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
-alias pgoff='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
+# alias pgon='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
+# alias pgoff='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
 
 # MySQL aliases
-alias myon='sudo /Library/StartupItems/MySQLCOM/MySQLCOM start'
-alias myoff='sudo /Library/StartupItems/MySQLCOM/MySQLCOM stop'
-alias myrestart='sudo /Library/StartupItems/MySQLCOM/MySQLCOM restart'
+# alias myon='sudo /Library/StartupItems/MySQLCOM/MySQLCOM start'
+# alias myoff='sudo /Library/StartupItems/MySQLCOM/MySQLCOM stop'
+# alias myrestart='sudo /Library/StartupItems/MySQLCOM/MySQLCOM restart'
 
 # apache aliases
-alias apron='apachectl -k start'
-alias aproff='apachectl -k stop'
-alias apres='apachectl -k restart'
+# alias apron='apachectl -k start'
+# alias aproff='apachectl -k stop'
+# alias apres='apachectl -k restart'
 
 # find aliases
 alias fn='find . -iname $1'
@@ -25,6 +26,11 @@ alias bi='bundle install'
 # hub tool 
 if hash hub 2>/dev/null; then
   alias git='hub'
+fi
+
+# bat tool 
+if hash bat 2>/dev/null; then
+  alias cat='bat'
 fi
 
 # IP addresses
@@ -84,6 +90,3 @@ alias plistbuddy="/usr/libexec/PlistBuddy"
 # Ring the terminal bell, and put a badge on Terminal.app’s Dock icon
 # (useful when executing time-consuming commands)
 alias badge="tput bel"
-
-# cat with and line numbers and color
-alias ccat="__ccat"

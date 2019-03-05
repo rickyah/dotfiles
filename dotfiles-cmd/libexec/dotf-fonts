@@ -11,7 +11,6 @@ puts 'Copying files to user font folder'
 puts "---------------------------------------------------------------------------------"
 
 
-FileRsync.new('./fonts/', "#{ENV['HOME']}/Library/Fonts/").rsync_files
+FileRsync.new("#{ENV['_DOTF_ROOT']}/share/fonts/", "#{ENV['HOME']}/Library/Fonts/").rsync_files
 
 exit 0
-    
