@@ -6,6 +6,8 @@
 
 require "#{ENV['_DOTF_ROOT']}/share/dotf/file_rsync"
 
+
+
 puts "---------------------------------------------------------------------------------"
 puts 'Copy configuration files in home folder'
 puts "---------------------------------------------------------------------------------"
@@ -17,18 +19,14 @@ unless gets.chomp =~ /^[Yy]/
 end
 
 puts
-puts "Updating configuration files in directory #{ENV['HOME']}/.confiles"
+puts "Updating configuration files in directory #{ENV['HOME']}/.config/shell"
 puts "---------------------------------------------------------------------------------"
-FileRsync.new("./.confiles", "~/").rsync_files
+FileRsync.new("#{ENV["_DOTF_ROOT"]}/share/configuration_files/config", "~/.config/shell").rsync_files
 
 puts
 puts "Updating dotfiles in directory #{ENV['HOME']}"
 puts "---------------------------------------------------------------------------------"
-FileRsync.new("./.dotfiles/", "~/").rsync_files
+FileRsync.new("#{ENV["_DOTF_ROOT"]}/share/configuration_filesroot/", "~/").rsync_files
 
-puts 
-puts "Updating #{ENV['HOME']}/.zshrc file"
-puts "---------------------------------------------------------------------------------"
-FileRsync.new(".zshrc", "~/.zshrc").rsync_files
 
 exit 0

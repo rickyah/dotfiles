@@ -13,4 +13,8 @@ ripgrep
 mono
 diff-so-fancy
 fzf
+neovim
+bat
+fx
+zsh-syntax-highlighting
 

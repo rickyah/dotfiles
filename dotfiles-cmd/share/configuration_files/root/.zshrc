@@ -56,18 +56,14 @@ z)
 # register homebrew completions folder
 fpath=('/usr/local/share/zsh/site-functions/' $fpath)
 
+# Customize to your needs...
+RPROMPT='$(battery_pct_prompt)'
+
+source $ZSH/oh-my-zsh.sh
+
 # load configuration files
 for file in ~/.confiles/.*; do
     [ -r "$file" ] && source "$file"
 done
 unset file
 
-# rbenv
-if type "rbenv" > /dev/null; then
-    eval "$(rbenv init -)"
-fi
-
-source $ZSH/oh-my-zsh.sh
-
-# Customize to your needs...
-RPROMPT='$(battery_pct_prompt)'

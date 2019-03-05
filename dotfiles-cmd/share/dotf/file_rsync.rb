@@ -14,7 +14,6 @@ class FileRsync
     end
 
     def rsync_files args=nil
-
         rsync_args = args || @@rsync_args
         cmd = "#{@@rsync_cmd} #{rsync_args} #{@source_path} #{@dest_path}"
 
