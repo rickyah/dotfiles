@@ -12,3 +12,5 @@ highlight
 ripgrep
 mono
 diff-so-fancy
+fzf
+
