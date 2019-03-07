@@ -1,0 +1,34 @@
+[
+    {
+        "from": "zshrc",
+        "to": "~/.zshrc"
+    },
+    {
+        "from": "bash_profile",
+        "to": "~/.bash_profile"
+    },
+    {
+        "from": "vimrc",
+        "to": "~/.vimrc"
+    },
+    {
+        "from": "gitconfig",
+        "to": "~/.gitconfig"
+    },
+    {
+        "from": "gitignore_global",
+        "to": "~/.gitignore_global"
+    },
+    {
+        "from": "hushlogin",
+        "to": "~/.hushlogin"
+    },
+    {
+        "from": "batrc",
+        "to": "~/.batrc"
+    },
+    {
+        "from": "gemrc",
+        "to": "~/.gemrc"
+    }
+]

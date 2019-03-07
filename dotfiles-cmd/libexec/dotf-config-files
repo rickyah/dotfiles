@@ -4,29 +4,66 @@
 # Summary: Copies shell config files to the proper places to set the defaults
 # Help: Sets my default zshell config, paths, etc.
 
+require 'pathname'
+require 'json'
+require 'optparse'
+
 require "#{ENV['_DOTF_ROOT']}/share/dotf/file_rsync"
 
+options = {}
+OptionParser.new do |opt|
+  opt.on('--dry-run') { |o| options[:dry_run] = o }
+  opt.on('--force', '-f') { |o| options[:force] = o }
+  opt.on('--reverse', '-r') { |o| options[:reverse] = o }
+end.parse!
 
+config_files_root_path = "#{ENV["_DOTF_ROOT"]}/share/configuration_files/"
 
-puts "---------------------------------------------------------------------------------"
-puts 'Copy configuration files in home folder'
-puts "---------------------------------------------------------------------------------"
+begin
+file_mappings = Pathname.new(config_files_root_path).children
+    .select { |c| c.directory? }
+    .reduce([]) { |total, config_subdirectory|
+        file_list = config_subdirectory + "rsync_list.json" 
+        if file_list.exist?
+            expanded_files = JSON.parse(file_list.read)
+            expanded_files.each { |entry| 
+                entry["from"] = File.expand_path(entry["from"], config_subdirectory)
+                entry["to"] = File.expand_path(entry["to"], config_subdirectory)
+                # Need to add trailing backslask for rsync to recognice folders
+                entry["from"] << "/" if File.directory? entry["from"] 
+                entry["to"] << "/" if File.directory? entry["to"]
+            } 
+            total += expanded_files
+        end
+        total
+    }
+rescue exception
+    puts exception
+    exit 10
+end
+puts "---------------------------------------------------------------------------"
+puts 'Copying configuration files'
+puts "---------------------------------------------------------------------------"
 
-puts "Some files in your home directory could be overwritten. Continue? (y/n)"
-unless gets.chomp =~ /^[Yy]/
-    puts 'Aborting...'
-    exit 2
+unless options[:force]
+    puts "Some files in your home directory could be overwritten. Continue? (y/n)"
+    unless gets.chomp =~ /^[Yy]/
+        puts 'Aborting...'
+        exit 2
+    end
 end
 
-puts
-puts "Updating configuration files in directory #{ENV['HOME']}/.config/"
-puts "---------------------------------------------------------------------------------"
-FileRsync.new("#{ENV["_DOTF_ROOT"]}/share/configuration_files/config/", "~/.config/").rsync_files
+do_dry_run = !ENV['DOTFILES_DRY_RUN'].nil? || options[:dry_run]
 
-puts
-puts "Updating dotfiles in directory #{ENV['HOME']}"
-puts "---------------------------------------------------------------------------------"
-FileRsync.new("#{ENV["_DOTF_ROOT"]}/share/configuration_files/root/", "~/").rsync_files
+fsync = FileRsync.new(dry_run: do_dry_run)
+puts "INFO: dry run: no files will be copied" if do_dry_run
 
+file_mappings.each { |entry|
+    if (options[:reverse])
+        fsync.rsync_files(entry["to"], entry["from"])
+    else 
+        fsync.rsync_files(entry["from"], entry["to"])
+    end
+}
 
 exit 0

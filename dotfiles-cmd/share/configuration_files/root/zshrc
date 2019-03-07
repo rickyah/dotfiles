@@ -1,3 +1,5 @@
+# PROBANDO
+#
 # uncomment this to profile startup time
 # zmodload zsh/zprof
 
