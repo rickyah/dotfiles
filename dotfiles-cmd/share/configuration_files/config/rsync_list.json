@@ -1,0 +1,10 @@
+[
+    {
+        "from": "./shell/",
+        "to": "~/.config/shell/"
+    },
+    {
+        "from": "./nvim/",
+        "to": "~/.config/shell/"
+    }
+]
