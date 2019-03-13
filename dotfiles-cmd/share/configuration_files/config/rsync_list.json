@@ -5,6 +5,6 @@
     },
     {
         "from": "./nvim/",
-        "to": "~/.config/shell/"
+        "to": "~/.config/nvim/"
     }
 ]
