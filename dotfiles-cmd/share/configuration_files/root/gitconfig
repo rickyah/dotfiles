@@ -36,15 +36,13 @@
   excludesfile = ~/.gitignore_global
   mergeoptions = --no-ff --no-commit
   autocrlf = input 
-  pager = "diff-so-fancy|less -SFX"
+  pager = "diff-so-fancy|less --tabs=4 -RXFS"
 
 [difftool "sourcetree"]
   cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-  path =
 
 [mergetool "sourcetree"]
-  cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-  trustExitCode = true
+  cmd = opendiff \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 
 [apply]
   # Detect whitespace errors when applying a patch
@@ -60,13 +58,11 @@
   ct = checkout -t
   cr = checkout --
   unstage = reset HEAD
-  
+
   # submodules
   sm = submodule
-
   # update  submodules
   smu = "!f() { git submodule update --init --recursive $1; }; f"
-
   # better submodule status
   sms = "!f() { \
           git --no-pager submodule foreach --recursive --quiet 'git show HEAD --no-patch --format=\"%C(magenta)$name%C(yellow) ->%d%n%C(red)%h%C(reset) - %s %C(green)(%cr) %C(bold blue)<%an>%C(reset)\"'; \
@@ -81,19 +77,24 @@
   brml-f = branch -D
   brma = "!f() { git branch -d $1 && git branch -d --remote origin/$1; }; f"
   bmv = branch -m
+ 
   # remotes
   re = remote
   rea = remote -v
+ 
   #rebases & squash
   rb = rebase
   rbi = rebase -i
   rbc = rebase --continue
   rba = rebase --abort
   rbs = rebase --skip
+ 
   #squashes
   sq = "!f() { git rebase --autosquash -i HEAD~$1; }; f"
+  
   # tags
   t = tag -l
+ 
   # stashes
   st = stash
   stl = stash list
@@ -101,36 +102,39 @@
   sts = "!f() { git stash show stash@{$1}; }; f"
   std = "!f() { git stash show stash@{$1} -U5; }; f"
   strm = "!f() { git stash drop stash@{$1}; }; f"
+  
   #commits
-  c = commit
+  c = commit -v
   cm = commit -m
   cma = commit -am
+ 
   # pushes & pulls
   f = fetch --prune
   # always prune remote branches
   fetch = fetch --prune
   ps = push
-  # push the current locla branch to origin and track it
+  # push the current local branch to origin and track it
   psnb = "!f() { git push origin $(git rev-parse --abbrev-ref HEAD) --set-upstream;}; f"
   pl = pull --prune
-  pr = pull-request
+
   # status & log
   s = status -sb
   ss = status
+
   # Log oneline with more information
-  l = "!f() { git log $1 --pretty=format:'%Cred%h%Creset %<(75,trunc)%s %Cgreen%<(16,trunc)%cd %<(16,trunc)%C(bold blue)%an%Creset %C(yellow)%D' --date=format:'%d-%b-%y %H:%M';}; f"
+  l = "!f() { git log $1 --pretty=format:'%Cred%h%Creset %<(75,trunc)%s %Cgreen%<(16,trunc)%cd %<(16,trunc)%C(bold blue)%an%Creset %C(yellow)%D' --date=format:'%d-%b-%y %H:%M' --color=always;}; f"
   # log oneline showing graph
-  lg = "!f() { git log $1 --graph --pretty=format:'%>|(20)%Cred%h%Creset - %<(52,trunc)%s %Cgreen%cr %<(16,trunc)%C(bold blue)%an%Creset %C(yellow)%D';};f"
+  lg = "!f() { git log $1 --graph --pretty=format:'%>|(20)%Cred%h%Creset - %<(52,trunc)%s %Cgreen%cr %<(16,trunc)%C(bold blue)%an%Creset %C(yellow)%D' --color=always;};f"
+
   # show tracked branches
   tracked = "!d() { git for-each-ref --format='%(refname:short)' refs/heads/ | while read b; do if r=$(git config --get branch.$b.remote); then m=$(git config --get branch.$b.merge); echo \"$b -> $r/${m##*/}\"; fi; done } ; d"
+
   # `git di $number` shows the diff between the state `$number` revisions ago and the current state
   di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
-  #show changes
-  wc = whatchanged -p --abbrev-commit --pretty=medium
+
+  #reset
   r = reset
   rhh = reset HEAD --hard
 
-
 [push]
   default=simple
-
