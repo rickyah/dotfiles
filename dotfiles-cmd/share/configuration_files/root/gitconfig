@@ -52,50 +52,57 @@
   fetchJobs = 4
 
 [alias]
-  # checkouts
+# checkouts
   co = checkout
   cb = checkout -b
   ct = checkout -t
   cr = checkout --
   unstage = reset HEAD
 
-  # submodules
+# submodules
   sm = submodule
-  # update  submodules
+  # update submodules
   smu = "!f() { git submodule update --init --recursive $1; }; f"
-  # better submodule status
+  # better submodule status: shows the latests commit on each submodule
   sms = "!f() { \
           git --no-pager submodule foreach --recursive --quiet 'git show HEAD --no-patch --format=\"%C(magenta)$name%C(yellow) ->%d%n%C(red)%h%C(reset) - %s %C(green)(%cr) %C(bold blue)<%an>%C(reset)\"'; \
        }; \
   f"
 
-  #branch management
-  b = branch
-  ba = branch -a
+# branch management
+  # show local branches
+  b = branch -vv
+  # show local and remote branches
+  ba = branch -avv
+  # delete local branch
   brml = branch -d
+  # delete remote branch
   brmr = branch -d --remote
+  # forcely deletes a local branch
   brml-f = branch -D
+  # delete both the local and the remote branches
   brma = "!f() { git branch -d $1 && git branch -d --remote origin/$1; }; f"
+  # changes the name of a branch
   bmv = branch -m
  
-  # remotes
-  re = remote
-  rea = remote -v
+# remotes
+  # show remotes with their location
+  re = remote -v
  
-  #rebases & squash
+#rebases & squash
   rb = rebase
   rbi = rebase -i
   rbc = rebase --continue
   rba = rebase --abort
   rbs = rebase --skip
  
-  #squashes
+#squashes
   sq = "!f() { git rebase --autosquash -i HEAD~$1; }; f"
   
-  # tags
+# tags
   t = tag -l
  
-  # stashes
+# stashes
   st = stash
   stl = stash list
   stp = stash pop
@@ -103,12 +110,12 @@
   std = "!f() { git stash show stash@{$1} -U5; }; f"
   strm = "!f() { git stash drop stash@{$1}; }; f"
   
-  #commits
+#commits
   c = commit -v
   cm = commit -m
   cma = commit -am
  
-  # pushes & pulls
+# pushes & pulls
   f = fetch --prune
   # always prune remote branches
   fetch = fetch --prune
@@ -117,23 +124,31 @@
   psnb = "!f() { git push origin $(git rev-parse --abbrev-ref HEAD) --set-upstream;}; f"
   pl = pull --prune
 
-  # status & log
+# status & log
   s = status -sb
   ss = status
-
   # Log oneline with more information
   l = "!f() { git log $1 --pretty=format:'%Cred%h%Creset %<(75,trunc)%s %Cgreen%<(16,trunc)%cd %<(16,trunc)%C(bold blue)%an%Creset %C(yellow)%D' --date=format:'%d-%b-%y %H:%M' --color=always;}; f"
   # log oneline showing graph
   lg = "!f() { git log $1 --graph --pretty=format:'%>|(20)%Cred%h%Creset - %<(52,trunc)%s %Cgreen%cr %<(16,trunc)%C(bold blue)%an%Creset %C(yellow)%D' --color=always;};f"
-
   # show tracked branches
   tracked = "!d() { git for-each-ref --format='%(refname:short)' refs/heads/ | while read b; do if r=$(git config --get branch.$b.remote); then m=$(git config --get branch.$b.merge); echo \"$b -> $r/${m##*/}\"; fi; done } ; d"
+
+## diff
+
+  # diff unstaged changes
+  d = diff
+  # diff staged changes
+  dc = diff --cached
+  # diff last commited change
+  dlast = diff HEAD^
 
   # `git di $number` shows the diff between the state `$number` revisions ago and the current state
   di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
 
-  #reset
+#reset
   r = reset
+  rh = reset HEAD
   rhh = reset HEAD --hard
 
 [push]
