@@ -58,6 +58,8 @@
   ct = checkout -t
   cr = checkout --
   unstage = reset HEAD
+  # fco - checkout git branch/tag with fzf
+  fco = "!f() { source ~/.config/shell/functions; fco; }; f"
 
 # submodules
   sm = submodule
@@ -116,6 +118,9 @@
   cma = commit -am
  
 # pushes & pulls
+  # fixup
+  cfr = "!f() { git commit --fixup HEAD~$1; f"
+  cfs = "!f() { git commit --fixup :/$1;} f"
   f = fetch --prune
   # always prune remote branches
   fetch = fetch --prune
