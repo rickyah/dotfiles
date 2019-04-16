@@ -9,8 +9,8 @@ export HISTCONTROL=ignoredups
 # Make some commands not show up in history
 export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
 
-export LANG="es_ES"
-export LC_ALL="es_ES.UTF-8"
+export LANG="en_US"
+export LC_ALL="en_US.UTF-8"
 
 # Highlight section titles in manual pages
 export LESS_TERMCAP_md="$ORANGE"
