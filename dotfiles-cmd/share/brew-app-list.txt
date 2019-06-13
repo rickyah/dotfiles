@@ -17,4 +17,11 @@ neovim
 bat
 fx
 zsh-syntax-highlighting
+fd
+fzf
+z
+htop
+neovim
+terminal-notifier
+tig
 
