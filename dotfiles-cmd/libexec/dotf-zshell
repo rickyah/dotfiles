@@ -28,10 +28,6 @@ if File.exists? '~/.zshrc'
 end
 
 puts
-puts "Installing custom oh-my-zhs themes"
-FileRsync.new('./themes/', '~/.oh-my-zsh/themes').rsync_files
-
-puts
 puts "Setting zsh as system shell"
 
 result = system 'chsh -s /bin/zsh'
