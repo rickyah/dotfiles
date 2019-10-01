@@ -6,7 +6,6 @@
 # file shared/brew-cask-list.txt
 
 require 'mkmf'
-require 'pry'
 
 app_name = "Homebrew Cask"
 app_cmd = "brew cask"
