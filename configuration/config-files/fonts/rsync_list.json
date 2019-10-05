@@ -1,0 +1,14 @@
+[
+    {
+        "from": "./FiraCode/",
+        "to": "~/Library/Fonts/FiraCode"
+    },
+    {
+        "from": "./Inconsolata/",
+        "to": "~/Library/Fonts/Inconsolata"
+    },
+    {
+        "from": "./Cascadia/",
+        "to": "~/Library/Fonts/Cascadia"
+    }
+]

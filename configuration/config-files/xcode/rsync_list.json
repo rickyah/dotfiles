@@ -1,0 +1,10 @@
+[
+    {
+        "from": "./FontAndColorThemes/",
+        "to": "~/Library/Developer/Xcode/UserData/FontAndColorThemes/"
+    },
+    {
+        "from": "./KeyBindings/",
+        "to": "~/Library/Developer/Xcode/UserData/KeyBindings/"
+    }
+]
