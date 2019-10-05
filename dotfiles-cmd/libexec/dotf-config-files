@@ -41,6 +41,7 @@ OptionParser.new do |opt|
   opt.on('--dry-run') { |o| options[:dry_run] = o }
   opt.on('--force', '-f') { |o| options[:force] = o }
   opt.on('--reverse', '-r') { |o| options[:reverse] = o }
+  opt.on('--verbose', '-v') { |o| options[:verbose] = o }
 end.parse!
 
 config_files_root_path = "#{ENV["_DOTF_ROOT"]}/../configuration/config-files/"
@@ -86,22 +87,22 @@ unless options[:force]
 end
 
 do_dry_run = !ENV['DOTFILES_DRY_RUN'].nil? || options[:dry_run]
+do_quiet = (not options[:verbose]) or true
 
-fsync = FileRsync.new(dry_run: do_dry_run)
+fsync = FileRsync.new(dry_run: do_dry_run, quiet: do_quiet)
+
 puts "INFO: dry run: no files will be copied\n" if do_dry_run
 
 namespaces.each { |namespace|
 
-    puts "Copying files in #{namespace[:name]}"
-    puts "----------------------------------------------------------------------"
+    puts "\nCopying files in namespace #{namespace[:name]}"
 
     namespace[:file_list].each { |entry|
-
-        if (options[:reverse])
-            fsync.rsync_files(entry["to"], entry["from"])
-        else 
-            fsync.rsync_files(entry["from"], entry["to"])
-        end
+        from = entry["from"]
+        to = entry["to"]
+        
+        to,from = from,to if options[:reverse]
+        fsync.rsync_files(from, to)
     }
 }
 
