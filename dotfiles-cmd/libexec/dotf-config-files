@@ -55,7 +55,8 @@ namespaces = Pathname.new(config_files_root_path).children
         if file_list.exist?
             # we found a namespace
             namespace = {}
-            namespace[:name] = subfolder
+
+            namespace[:name] = Pathname.new(subfolder).basename
             namespace[:file_list] = JSON.parse(file_list.read)
 
             namespace[:file_list].each { |entry|
@@ -95,13 +96,14 @@ puts "INFO: dry run: no files will be copied\n" if do_dry_run
 
 namespaces.each { |namespace|
 
-    puts "\nCopying files in namespace #{namespace[:name]}"
+    puts "Copying files in namespace #{namespace[:name]}"
 
     namespace[:file_list].each { |entry|
         from = entry["from"]
         to = entry["to"]
         
         to,from = from,to if options[:reverse]
+
         fsync.rsync_files(from, to)
     }
 }
