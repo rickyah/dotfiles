@@ -1,8 +1,34 @@
 #!/usr/bin/ruby
 
 # Usage: dotf config-files
-# Summary: Copies shell config files to the proper places to set the defaults
-# Help: Sets my default zshell config, paths, etc.
+# Help: Syncs a sets of configuration files stored on this repository to the system
+# 
+# Arguments:
+#   --dry-run: do a dry run execution (just print the results on the screen, no file will be synced)
+#   --force:   do not ask the user for confirmation
+#   --reverse: syncs your system files to this repository
+
+# Summary: Starting at the folder configuration/config-files specified 
+# we iterate over all the subfolders that contain a file named
+# rsync_list.json. Those subfolders will be called namespaces from now on.
+# The json file contains a mapping with the source and destination location
+# for each file/subfolder in the namespace, so we can command this code where
+# to rsync the files.
+# The json file format is very simple:
+#
+#[
+#    {
+#        "from": "./whatever/",
+#        "to": "~/whenever/other/"
+#    },
+#    {
+#        "from": "./subfolder/my_config_file.cfg",
+#        "to": "~/.config/other_config_file.txt
+#    }
+#    ...
+#] 
+
+
 
 require 'pathname'
 require 'json'
@@ -17,27 +43,33 @@ OptionParser.new do |opt|
   opt.on('--reverse', '-r') { |o| options[:reverse] = o }
 end.parse!
 
-config_files_root_path = "#{ENV["_DOTF_ROOT"]}/share/configuration_files/"
+config_files_root_path = "#{ENV["_DOTF_ROOT"]}/../configuration/config-files/"
 
 begin
-file_mappings = Pathname.new(config_files_root_path).children
+namespaces = Pathname.new(config_files_root_path).children
     .select { |c| c.directory? }
-    .reduce([]) { |total, config_subdirectory|
-        file_list = config_subdirectory + "rsync_list.json" 
+    .reduce([]) { |all_namespaces, subfolder|
+        file_list = subfolder + "rsync_list.json" 
+
         if file_list.exist?
-            expanded_files = JSON.parse(file_list.read)
-            expanded_files.each { |entry| 
-                entry["from"] = File.expand_path(entry["from"], config_subdirectory)
-                entry["to"] = File.expand_path(entry["to"], config_subdirectory)
+            # we found a namespace
+            namespace = {}
+            namespace[:name] = subfolder
+            namespace[:file_list] = JSON.parse(file_list.read)
+
+            namespace[:file_list].each { |entry|
+                entry["from"] = File.expand_path(entry["from"], subfolder)
+                entry["to"] = File.expand_path(entry["to"], subfolder)
                 # Need to add trailing backslask for rsync to recognice folders
                 entry["from"] << "/" if File.directory? entry["from"] 
                 entry["to"] << "/" if File.directory? entry["to"]
             } 
-            total += expanded_files
+            
+            all_namespaces << namespace
         end
-        total
+        all_namespaces
     }
-rescue exception
+rescue Exception => exception
     puts exception
     exit 10
 end
@@ -56,14 +88,21 @@ end
 do_dry_run = !ENV['DOTFILES_DRY_RUN'].nil? || options[:dry_run]
 
 fsync = FileRsync.new(dry_run: do_dry_run)
-puts "INFO: dry run: no files will be copied" if do_dry_run
+puts "INFO: dry run: no files will be copied\n" if do_dry_run
 
-file_mappings.each { |entry|
-    if (options[:reverse])
-        fsync.rsync_files(entry["to"], entry["from"])
-    else 
-        fsync.rsync_files(entry["from"], entry["to"])
-    end
+namespaces.each { |namespace|
+
+    puts "Copying files in #{namespace[:name]}"
+    puts "----------------------------------------------------------------------"
+
+    namespace[:file_list].each { |entry|
+
+        if (options[:reverse])
+            fsync.rsync_files(entry["to"], entry["from"])
+        else 
+            fsync.rsync_files(entry["from"], entry["to"])
+        end
+    }
 }
 
 exit 0

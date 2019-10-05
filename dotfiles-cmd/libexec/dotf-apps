@@ -12,8 +12,8 @@ app_cmd = "brew cask"
 app_install_cmd = 'brew install cask'
 cask_mas_install_cmd = 'brew install mas'
 
-app_list_filepath = "#{ENV["_DOTF_ROOT"]}/share/brew-cask-list.txt"
-mas_app_list_filepath = "#{ENV["_DOTF_ROOT"]}/share/brew-mas-app-list.txt"
+app_list_filepath = "#{ENV["_DOTF_ROOT"]}/../configuration/homebrew-cask-list.txt"
+mas_app_list_filepath = "#{ENV["_DOTF_ROOT"]}/../configuration/mac-app-store-list.txt"
 
 puts "---------------------------------------------------------------------------------"
 puts "This script installs #{app_name} if it is not installed"

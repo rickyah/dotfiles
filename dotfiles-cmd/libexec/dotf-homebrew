@@ -11,7 +11,7 @@ app_name = "Homebrew"
 app_cmd = "brew"
 app_install_cmd = 'ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"'
 
-app_list_filepath = "#{ENV["_DOTF_ROOT"]}/share/brew-app-list.txt"
+app_list_filepath = "#{ENV["_DOTF_ROOT"]}/../configuration/homebrew-list.txt"
 
 puts "---------------------------------------------------------------------------------"
 puts "This script installs #{app_name} if it is not installed"
