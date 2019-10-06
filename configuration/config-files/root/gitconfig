@@ -1,6 +1,6 @@
 [user]
-  name = Ricardo Amores
-  email = rickyah@gmail.com
+	name = Ricardo Amores
+	email = rickyah@gmail.com
 
 [color]
   ui = true
@@ -33,16 +33,18 @@
   rmdir = true
 
 [core]
-  excludesfile = ~/.gitignore_global
+	excludesfile = /Users/ricky/.gitignore_global
   mergeoptions = --no-ff --no-commit
   autocrlf = input 
   pager = "diff-so-fancy|less --tabs=4 -RXF"
 
 [difftool "sourcetree"]
-  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
 
 [mergetool "sourcetree"]
-  cmd = opendiff \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
 
 [apply]
   # Detect whitespace errors when applying a patch
@@ -158,3 +160,5 @@
 
 [push]
   default=simple
+[commit]
+	template = /Users/ricky/.stCommitMsg
