@@ -1,0 +1,79 @@
+// Place your key bindings in this file to overwrite the defaults
+[
+	 { "key": "cmd+r",           "command": "workbench.action.gotoSymbol" }
+	,{ "key": "shift+cmd+u",     "command": "workbench.action.tasks.test" }
+	,{ "key": "cmd+e",           "command": "workbench.action.showAllSymbols" }
+	,{ "key": "cmd+t",           "command": "workbench.action.quickOpen" }
+	,
+	{
+		"key": "shift+cmd+e",           "command": "workbench.view.explorer" }
+	,{ "key": "cmd+5",           "command": "workbench.view.debug" }
+	,{ "key": "cmd+b",     "command": "workbench.action.toggleSidebarVisibility"}
+	,{ 
+		"key": "cmd+alt+b",     
+		"command": "workbench.action.output.toggleOutput"
+	},
+	{
+		"key": "shift+cmd+7",
+		"command": "editor.emmet.action.toggleComment",
+		"when": "editorTextFocus"
+	},
+	{
+		"key": "shift+cmd+e",
+		"command": "-workbench.view.explorer"
+	},
+	{
+		"key": "ctrl+up",
+		"command": "C_Cpp.SwitchHeaderSource",
+		"when": "editorTextFocus && editorLangId == 'cpp'"
+	},
+	{
+		"key": "alt+o",
+		"command": "-C_Cpp.SwitchHeaderSource",
+		"when": "editorTextFocus && editorLangId == 'cpp'"
+	},
+	{
+		"key": "ctrl+up",
+		"command": "C_Cpp.SwitchHeaderSource",
+		"when": "editorTextFocus && editorLangId == 'c'"
+	},
+	{
+		"key": "alt+o",
+		"command": "-C_Cpp.SwitchHeaderSource",
+		"when": "editorTextFocus && editorLangId == 'c'"
+	},
+	{
+		"key": "ctrl+up",
+		"command": "extension.switch"
+	},
+	{
+		"key": "alt+o",
+		"command": "-extension.switch"
+	},
+	{
+		"key": "ctrl+alt+up",
+		"command": "extension.switchRightPane"
+	},
+	{
+		"key": "shift+alt+o",
+		"command": "-extension.switchRightPane"
+	},
+	{
+		"key": "cmd+l",
+		"command": "-expandLineSelection",
+		"when": "textInputFocus"
+	},
+	{
+		"key": "cmd+l",
+		"command": "-expandLineSelection",
+		"when": "editorFocus"
+	},
+	{
+		"key": "cmd+l",
+		"command": "workbench.action.gotoLine"
+	},
+	{
+		"key": "ctrl+g",
+		"command": "-workbench.action.gotoLine"
+	}
+]

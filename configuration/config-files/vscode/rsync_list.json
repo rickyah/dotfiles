@@ -1,0 +1,10 @@
+[
+    {
+        "from": "./settings.json",
+        "to": "~/Library/Application\\ Support/Code/User/settings.json"
+    },
+    {
+        "from": "./keybindings.json",
+        "to": "~/Library/Application\\ Support/Code/User/keybindings.json"
+    }
+]
