@@ -95,4 +95,5 @@
     "sync.autoDownload": false,
     "sync.autoUpload": false,
     "sync.forceDownload": false,
+    "gitlens.advanced.telemetry.enabled": false
 }

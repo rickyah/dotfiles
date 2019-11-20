@@ -23,6 +23,9 @@ alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup
 alias be='bundle exec'
 alias bi='bundle install'
 
+# git 
+alias g='git'
+
 # hub tool 
 if hash hub 2>/dev/null; then
   alias git='hub'
