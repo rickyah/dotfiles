@@ -16,9 +16,9 @@
     },
     "editor.wordWrap": "on",
     "editor.wordWrapColumn": 120,
-    "editor.minimap.enabled": true,
+    "editor.minimap.enabled": false,
     "editor.minimap.renderCharacters": false,
-    "workbench.sideBar.location": "left",
+    "workbench.sideBar.location": "right",
     "workbench.colorTheme": "Monokai Dark Soda",
     "window.titleBarStyle": "native",
     "window.nativeTabs": true,
@@ -26,19 +26,16 @@
     "editor.renderIndentGuides": true,
     "workbench.editor.revealIfOpen": true,
     "workbench.tips.enabled": false,
-    "window.title": "${activeEditorShort}${separator}${rootName}${dirty}",
-    "editor.insertSpaces": false,
+	"window.title": "${activeEditorShort}${separator}${rootName}${dirty}",
     "explorer.openEditors.visible": 0,
     "workbench.editor.enablePreview": false,
     "editor.formatOnSave": false,
     "files.trimTrailingWhitespace": true,
-    "editor.stablePeek": true,
     "editor.multiCursorModifier": "alt",
     "editor.renderControlCharacters": true,
     "csharp.suppressDotnetInstallWarning": true,
     "workbench.startupEditor": "newUntitledFile",
     "editor.snippetSuggestions": "top",
-    "editor.formatOnPaste": true,
     "workbench.editor.labelFormat": "medium",
     "workbench.colorCustomizations": {
         "editorIndentGuide.activeBackground": "#BBBF"
@@ -95,5 +92,7 @@
     "sync.autoDownload": false,
     "sync.autoUpload": false,
     "sync.forceDownload": false,
-    "gitlens.advanced.telemetry.enabled": false
+    "gitlens.advanced.telemetry.enabled": false,
+	"editor.detectIndentation": false,
+	"editor.autoIndent": false
 }
