@@ -33,14 +33,14 @@
   rmdir = true
 
 [core]
-	excludesfile = /Users/ricky/.gitignore_global
+	excludesfile = ~/.gitignore_global
   mergeoptions = --no-ff --no-commit
-  autocrlf = input 
+  autocrlf = input
   pager = "diff-so-fancy|less --tabs=4 -RXF"
 
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 
 [mergetool "sourcetree"]
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
@@ -88,24 +88,24 @@
   brma = "!f() { git branch -d $1 && git branch -d --remote origin/$1; }; f"
   # changes the name of a branch
   bmv = branch -m
- 
+
 # remotes
   # show remotes with their location
   re = remote -v
- 
+
 #rebases & squash
   rb = rebase
   rbi = rebase -i
   rbc = rebase --continue
   rba = rebase --abort
   rbs = rebase --skip
- 
+
 #squashes
   sq = "!f() { git rebase --autosquash -i HEAD~$1; }; f"
-  
+
 # tags
   t = tag -l
- 
+
 # stashes
   st = stash
   stl = stash list
@@ -113,12 +113,12 @@
   sts = "!f() { git stash show stash@{$1}; }; f"
   std = "!f() { git stash show stash@{$1} -U5; }; f"
   strm = "!f() { git stash drop stash@{$1}; }; f"
-  
+
 #commits
   c = commit -v
   cm = commit -m
   cma = commit -am
- 
+
 # pushes & pulls
   # fixup
   cfr = "!f() { git commit --fixup HEAD~$1; f"
@@ -161,7 +161,7 @@
 [push]
   default=simple
 [commit]
-	template = /Users/ricky/.stCommitMsg
+	template = ~/.stCommitMsg
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
