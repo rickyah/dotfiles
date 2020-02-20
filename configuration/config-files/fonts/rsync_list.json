@@ -10,5 +10,9 @@
     {
         "from": "./Cascadia/",
         "to": "~/Library/Fonts/Cascadia"
+    },
+    {
+        "from": "./JetBrainsMono/",
+        "to": "~/Library/Fonts/JetBrainsMono"
     }
 ]
