@@ -2,7 +2,7 @@
 
 # Usage: dotf install-all
 # Summary: Installs all defaults configurations
-# Help: Equivalent to run the following commands (in the same order: 
+# Help: Equivalent to run the following commands (in the same order:
 # dotf-homebrew, dotf-fonts, dotf-osx-defaults, dotf-zshell dotf-commands dotf-config-files
 
 echo 'This command will install all configuration fils in the system'
@@ -25,7 +25,4 @@ echo
 echo
 
 "$_DOTF_ROOT"/libexec/dotf-config-files
-echo
-
-"$_DOTF_ROOT"/libexec/dotf-apps
 echo
