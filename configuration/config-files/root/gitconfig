@@ -36,7 +36,7 @@
 	excludesfile = ~/.gitignore_global
   mergeoptions = --no-ff --no-commit
   autocrlf = input
-  pager = "diff-so-fancy|less --tabs=4 -RXF"
+  pager = "delta"
 
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
