@@ -7,7 +7,8 @@
 
 [] Add support for Brewfiles
 	[X] Refactor app install script in favor of Brewfiles
-	[] Install fonts using [cask-font](https://github.com/Homebrew/homebrew-cask-fonts) to reduce download size
+	[X] Install fonts using [cask-font](https://github.com/Homebrew/homebrew-cask-fonts) to reduce download size
+	[] Nuke fonts binary files from repository
 
 [] Support multiple configurations (personal, work) without using branches (aka layer system)
 	We can generate configurations that apply on top of a base one: a  default Brewfile with common cases and the we apply an aditional Brewfile for the current layer
