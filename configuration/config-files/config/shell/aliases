@@ -26,12 +26,7 @@ alias bi='bundle install'
 # git
 alias g='git'
 
-# hub tool 
-if hash hub 2>/dev/null; then
-  alias git='hub'
-fi
-
-# bat tool 
+# bat tool
 if hash bat 2>/dev/null; then
   alias cat='bat'
   export BAT_CONFIG_PATH="~/.batrc"
