@@ -5,76 +5,8 @@
 # Help: This will install homebrew and the packages defined in the
 # file shared/brew-app-list.txt
 
-require 'mkmf'
-MakeMakefile::Logging.instance_variable_set(:@logfile, File::NULL)
-require 'optparse'
-options = {}
-OptionParser.new do |opt|
-  opt.on('--dry-run') { |o| options[:dry_run] = o }
-  opt.on('--verbose', '-v') { |o| options[:verbose] = o }
-end.parse!
+require "#{ENV["_DOTF_ROOT"]}/share/dotf/homebrew"
 
-options[:dry_run] = !ENV['DOTFILES_DRY_RUN'].nil? || options[:dry_run]
+brewfile_filepath = "#{ENV["_DOTF_ROOT"]}/../configuration/apps/Brewfile"
 
-
-app_name = "Homebrew"
-app_cmd = "brew"
-app_install_cmd = 'ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"'
-
-brewfile_filepath = "#{ENV["_DOTF_ROOT"]}/../configuration/Brewfile"
-
-puts "---------------------------------------------------------------------------------"
-puts "This script installs #{app_name} if it is not installed"
-puts "---------------------------------------------------------------------------------"
-
-puts 'Looking for Homebrew executable...'
-if find_executable(app_cmd).nil?
-
-  puts "#{app_name} was not found in the system, To install it, this command needs be executed:"
-  puts "#{app_install_cmd}"
-
-  puts "Do you want me to install it? (y/n)"
-
-  if gets.chomp =~ /^[Yy]/
-    puts "Ok, installing #{app_name}"
-    system app_install_cmd
-  else
-    puts "Aborting"
-    exit 2
-  end
-
-else
-  puts "Found #{app_name} in the system: version #{%x(#{app_cmd} --version)}"
-end
-
-if options[:dry_run]
-  puts "dry-run mode. This script will:"
-  puts "- Update homebrew"
-  puts
-  puts "- Tap these:"
-  puts system("brew bundle list --taps --file \"#{brewfile_filepath}\"")
-  puts
-  puts "- Install these brews:"
-  puts system("brew bundle list --brews --file \"#{brewfile_filepath}\"")
-  puts
-  puts "- Install these casks:"
-  puts system("brew bundle list --casks --file \"#{brewfile_filepath}\"")
-  puts
-  puts "- Install these Mac App Store apps:"
-  puts system("brew bundle list --mas --file \"#{brewfile_filepath}\"")
-  puts
-  puts "- Cleanup outdated versions in the system"
-  exit 0
-else
-  puts "Updating homebrew to make sure we’re using the latest version"
-  system('brew update')
-
-  puts "Installing all brews, casks and Mac App Store apps"
-  system("brew bundle install -v --file \"#{brewfile_filepath}\"")
-
-  puts "Removing outdated versions from the cellar"
-  system('brew cleanup')
-end
-
-puts "Done"
-puts "Don’t forget to add $(brew --prefix coreutils)/libexec/gnubin to \$PATH."
+bundle_homebrew(brewfile_filepath)
