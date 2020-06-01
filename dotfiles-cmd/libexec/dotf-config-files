@@ -2,13 +2,13 @@
 
 # Usage: dotf config-files
 # Help: Syncs a sets of configuration files stored on this repository to the system
-# 
+#
 # Arguments:
 #   --dry-run: do a dry run execution (just print the results on the screen, no file will be synced)
 #   --force:   do not ask the user for confirmation
 #   --reverse: syncs your system files to this repository
 
-# Summary: Starting at the folder configuration/config-files specified 
+# Summary: Starting at the folder configuration/config-files specified
 # we iterate over all the subfolders that contain a file named
 # rsync_list.json. Those subfolders will be called namespaces from now on.
 # The json file contains a mapping with the source and destination location
@@ -26,16 +26,15 @@
 #        "to": "~/.config/other_config_file.txt
 #    }
 #    ...
-#] 
+#]
 
 
 
 require 'pathname'
 require 'json'
-require 'optparse'
-
 require "#{ENV['_DOTF_ROOT']}/share/dotf/file_rsync"
 
+require 'optparse'
 options = {}
 OptionParser.new do |opt|
   opt.on('--dry-run') { |o| options[:dry_run] = o }
@@ -44,13 +43,15 @@ OptionParser.new do |opt|
   opt.on('--verbose', '-v') { |o| options[:verbose] = o }
 end.parse!
 
+options[:dry_run] = !ENV['DOTFILES_DRY_RUN'].nil? || options[:dry_run]
+
 config_files_root_path = "#{ENV["_DOTF_ROOT"]}/../configuration/config-files/"
 
 begin
 namespaces = Pathname.new(config_files_root_path).children
     .select { |c| c.directory? }
     .reduce([]) { |all_namespaces, subfolder|
-        file_list = subfolder + "rsync_list.json" 
+        file_list = subfolder + "rsync_list.json"
 
         if file_list.exist?
             # we found a namespace
@@ -63,10 +64,10 @@ namespaces = Pathname.new(config_files_root_path).children
                 entry["from"] = File.expand_path(entry["from"], subfolder)
                 entry["to"] = File.expand_path(entry["to"], subfolder)
                 # Need to add trailing backslask for rsync to recognice folders
-                entry["from"] << "/" if File.directory? entry["from"] 
+                entry["from"] << "/" if File.directory? entry["from"]
                 entry["to"] << "/" if File.directory? entry["to"]
-            } 
-            
+            }
+
             all_namespaces << namespace
         end
         all_namespaces
@@ -87,7 +88,7 @@ unless options[:force]
     end
 end
 
-do_dry_run = !ENV['DOTFILES_DRY_RUN'].nil? || options[:dry_run]
+do_dry_run = options[:dry_run]
 do_quiet = (not options[:verbose]) or true
 
 fsync = FileRsync.new(dry_run: do_dry_run, quiet: do_quiet)
@@ -101,7 +102,7 @@ namespaces.each { |namespace|
     namespace[:file_list].each { |entry|
         from = entry["from"]
         to = entry["to"]
-        
+
         to,from = from,to if options[:reverse]
 
         fsync.rsync_files(from, to)

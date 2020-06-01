@@ -23,7 +23,7 @@ alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup
 alias be='bundle exec'
 alias bi='bundle install'
 
-# git 
+# git
 alias g='git'
 
 # hub tool 
