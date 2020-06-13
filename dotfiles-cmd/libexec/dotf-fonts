@@ -1,11 +1,12 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 # Usage: dotf apps
 # Summary: Installs homebrew cask and install several apps
 # Help: This will install homebrew cask and the packages defined in the
 # file shared/brew-cask-list.txt
-require "#{ENV["_DOTF_ROOT"]}/share/dotf/homebrew"
+require "#{ENV['_DOTF_ROOT']}/share/dotf/homebrew"
 
-brewfile_filepath = "#{ENV["_DOTF_ROOT"]}/../configuration/fonts/Brewfile"
+brewfile_filepath = "#{ENV['_DOTF_ROOT']}/../configuration/fonts/Brewfile"
 
 bundle_homebrew(brewfile_filepath)

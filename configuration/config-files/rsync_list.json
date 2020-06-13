@@ -1,0 +1,94 @@
+{
+    "bat": [
+        {
+            "from": "batrc.sh",
+            "to": "~/.batrc"
+        }
+    ],
+    "git": [
+        {
+            "from": "gitconfig",
+            "to": "~/.gitconfig"
+        },
+        {
+            "from": "gitignore_global",
+            "to": "~/.gitignore_global"
+        }
+    ],
+    "nvim": [
+        {
+            "from": "init.vim",
+            "to": "~/.config/nvim/"
+        },
+        {
+            "from": "vimrc",
+            "to": "~/.vimrc"
+        }
+    ],
+    "ruby": [
+        {
+            "from": "gemrc",
+            "to": "~/.gemrc"
+        }
+    ],
+    "shell": [
+        {
+            "from": "zshrc.sh",
+            "to": "~/.zshrc"
+        },
+        {
+            "from": "bash_profile.sh",
+            "to": "~/.bash_profile"
+        },
+        {
+            "from": "hushlogin",
+            "to": "~/.hushlogin"
+        },
+        {
+            "from": "exports.sh",
+            "to": "~/.config/config/shell/10_exports"
+        },
+        {
+            "from": "aliases.sh",
+            "to": "~/.config/config/shell/20_aliases"
+        },
+        {
+            "from": "path.sh",
+            "to": "~/.config/config/shell/30_path"
+        },
+        {
+            "from": "external_tools_init.sh",
+            "to": "~/.config/config/shell/40_external_tools_init"
+        },
+        {
+            "from": "functions.sh",
+            "to": "~/.config/config/shell/50_functions"
+        }
+    ],
+    "tig": [
+        {
+            "from": "tigrc",
+            "to": "~/.tigrc/"
+        }
+    ],
+    "vscode": [
+        {
+            "from": "settings.json",
+            "to": "~/Library/Application Support/Code/User/settings.json"
+        },
+        {
+            "from": "keybindings.json",
+            "to": "~/Library/Application Support/Code/User/keybindings.json"
+        }
+    ],
+    "xcode": [
+        {
+            "from": "./FontAndColorThemes/",
+            "to": "~/Library/Developer/Xcode/UserData/FontAndColorThemes/"
+        },
+        {
+            "from": "./KeyBindings/",
+            "to": "~/Library/Developer/Xcode/UserData/KeyBindings/"
+        }
+    ]
+}

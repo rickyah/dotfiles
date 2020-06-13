@@ -1,34 +1,33 @@
 #!/usr/bin/ruby
+# frozen_string_literal: true
 
 # Usage: dotf zshell
 # Summary: Installs oh-my-zshell
 # Help: It just clones the oh-my-zshell repo and sets some default configuration
 
-
-puts "---------------------------------------------------------------------------------"
-puts "Installing zshell and oh my zsh"
-puts "---------------------------------------------------------------------------------"
+puts '---------------------------------------------------------------------------------'
+puts 'Installing zshell and oh my zsh'
+puts '---------------------------------------------------------------------------------'
 
 require "#{ENV['_DOTF_ROOT']}/share/dotf/file_rsync"
 
-puts "Do you want me to install zsh as the default shell? (y/n)"
+puts 'Do you want me to install zsh as the default shell? (y/n)'
 unless gets.chomp =~ /^[Yy]/
-    puts 'Aborting...'
-    exit 2
+  puts 'Aborting...'
+  exit 2
 end
 
 puts
-puts  "Cloning the oh-my-zsh repository into the users's folder"
+puts "Cloning the oh-my-zsh repository into the users's folder"
 system 'git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh'
 
-
-if File.exists? '~/.zshrc'
-    puts 'Found and existing zshrc file. Making a backup called .zshrc.orig'
-    FileUtils.cp('~/.zshrc','~/.zshrc.orig')
+if File.exist? '~/.zshrc'
+  puts 'Found and existing zshrc file. Making a backup called .zshrc.orig'
+  FileUtils.cp('~/.zshrc', '~/.zshrc.orig')
 end
 
 puts
-puts "Setting zsh as system shell"
+puts 'Setting zsh as system shell'
 
 result = system 'chsh -s /bin/zsh'
 exit result unless result == 0

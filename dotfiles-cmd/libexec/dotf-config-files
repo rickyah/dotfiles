@@ -1,4 +1,5 @@
 #!/usr/bin/ruby
+# frozen_string_literal: true
 
 # Usage: dotf config-files
 # Help: Syncs a sets of configuration files stored on this repository to the system
@@ -14,9 +15,9 @@
 # The json file contains a mapping with the source and destination location
 # for each file/subfolder in the namespace, so we can command this code where
 # to rsync the files.
-# The json file format is very simple:
+#  The json file format is very simple:
 #
-#[
+# [
 #    {
 #        "from": "./whatever/",
 #        "to": "~/whenever/other/"
@@ -26,9 +27,7 @@
 #        "to": "~/.config/other_config_file.txt
 #    }
 #    ...
-#]
-
-
+# ]
 
 require 'pathname'
 require 'json'
@@ -89,24 +88,23 @@ unless options[:force]
 end
 
 do_dry_run = options[:dry_run]
-do_quiet = (not options[:verbose]) or true
+do_quiet = !(options[:verbose]) or true
 
 fsync = FileRsync.new(dry_run: do_dry_run, quiet: do_quiet)
 
 puts "INFO: dry run: no files will be copied\n" if do_dry_run
 
-namespaces.each { |namespace|
+namespaces.each do |namespace|
+  puts "Copying files in namespace #{namespace[:name]}"
 
-    puts "Copying files in namespace #{namespace[:name]}"
+  namespace[:file_list].each do |entry|
+    from = entry['from']
+    to = entry['to']
 
-    namespace[:file_list].each { |entry|
-        from = entry["from"]
-        to = entry["to"]
+    to, from = from, to if options[:reverse]
 
-        to,from = from,to if options[:reverse]
-
-        fsync.rsync_files(from, to)
-    }
-}
+    fsync.rsync_files(from, to)
+  end
+end
 
 exit 0

@@ -1,12 +1,13 @@
 #!/usr/bin/ruby
+# frozen_string_literal: true
 
 # Usage: dotf homebrew
 # Summary: Installs homebrew and some brew packages by default
 # Help: This will install homebrew and the packages defined in the
 # file shared/brew-app-list.txt
 
-require "#{ENV["_DOTF_ROOT"]}/share/dotf/homebrew"
+require "#{ENV['_DOTF_ROOT']}/share/dotf/homebrew"
 
-brewfile_filepath = "#{ENV["_DOTF_ROOT"]}/../configuration/apps/Brewfile"
+brewfile_filepath = "#{ENV['_DOTF_ROOT']}/../configuration/apps/Brewfile"
 
 bundle_homebrew(brewfile_filepath)
