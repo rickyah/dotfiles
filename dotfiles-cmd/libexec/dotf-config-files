@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
 # frozen_string_literal: true
 
 # Usage: dotf config-files
@@ -9,30 +9,34 @@
 #   --force:   do not ask the user for confirmation
 #   --reverse: syncs your system files to this repository
 
-# Summary: Starting at the folder configuration/config-files specified
-# we iterate over all the subfolders that contain a file named
-# rsync_list.json. Those subfolders will be called namespaces from now on.
-# The json file contains a mapping with the source and destination location
-# for each file/subfolder in the namespace, so we can command this code where
-# to rsync the files.
-#  The json file format is very simple:
+# Summary: At the folder configuration/config-files we save a file named
+# rsync_list.json containing a mapping between the configuration files stored
+# in this dotfiles repo and the location of the file in the system grouped in
+# namespaces that match the subfolder where those config files are located.
+# Paths are relative to the configuration/config-files folder
 #
-# [
-#    {
-#        "from": "./whatever/",
-#        "to": "~/whenever/other/"
-#    },
-#    {
-#        "from": "./subfolder/my_config_file.cfg",
-#        "to": "~/.config/other_config_file.txt
+# The json file format is very simple:
+#
+# {
+#  "entry": [
+#   {
+#     "from": "./whatever/",
+#     "to": "~/whenever/other/"
+#   },
+#   {
+#     "from": "./subfolder/my_config_file.sh",
+#     "to": "~/.config/other_config_file"
 #    }
 #    ...
-# ]
+#  ]
+#  ...
+# }
 
 require 'pathname'
 require 'json'
 require "#{ENV['_DOTF_ROOT']}/share/dotf/file_rsync"
 
+# parse arguments
 require 'optparse'
 options = {}
 OptionParser.new do |opt|
@@ -43,65 +47,88 @@ OptionParser.new do |opt|
 end.parse!
 
 options[:dry_run] = !ENV['DOTFILES_DRY_RUN'].nil? || options[:dry_run]
+do_dry_run = options[:dry_run] or false
+do_verbose = !(options[:verbose]) or false
+do_force = options[:force] or false
+copy_to_dotfiles = options[:reverse]
 
-config_files_root_path = "#{ENV["_DOTF_ROOT"]}/../configuration/config-files/"
+config_files_folder_path = "#{ENV['_DOTF_ROOT']}/../configuration/config-files/"
+config_files_sync_file_path = "#{config_files_folder_path}rsync_list.json"
+
+def puts_header(text)
+  puts '---------------------------------------------------------------------'
+  puts text
+  puts '----------------------------------------------------------------------'
+end
+
+# early checks
+unless File.exist? config_files_sync_file_path
+  puts "Error: could not find sync file at '#{config_files_sync_file_path}'"
+  exit 1
+end
+
+puts_header "Info: dry run: no files will be copied\n" if do_dry_run
+
+unless do_force || do_dry_run
+  destination = copy_to_dotfiles ? 'dotfiles' : 'home'
+  puts "Some files in your #{destination} directory will be overwritten. Continue? (y/n)"
+  unless gets.chomp =~ /^[Yy]/
+    puts 'Aborting...'
+    exit 2
+  end
+end
 
 begin
-namespaces = Pathname.new(config_files_root_path).children
-    .select { |c| c.directory? }
-    .reduce([]) { |all_namespaces, subfolder|
-        file_list = subfolder + "rsync_list.json"
+  puts_header 'Read rsync config file'
 
-        if file_list.exist?
-            # we found a namespace
-            namespace = {}
+  puts "File found at #{config_files_sync_file_path}" if File.exist? config_files_sync_file_path
 
-            namespace[:name] = Pathname.new(subfolder).basename
-            namespace[:file_list] = JSON.parse(file_list.read)
+  sync_files = JSON.parse File.read(config_files_sync_file_path)
 
-            namespace[:file_list].each { |entry|
-                entry["from"] = File.expand_path(entry["from"], subfolder)
-                entry["to"] = File.expand_path(entry["to"], subfolder)
-                # Need to add trailing backslask for rsync to recognice folders
-                entry["from"] << "/" if File.directory? entry["from"]
-                entry["to"] << "/" if File.directory? entry["to"]
-            }
+  puts '0xFABADA' + Dir.pwd
+  sync_files.each do |namespace, file_list|
+    file_list.each do |entry|
+      base_entry_path = "#{config_files_folder_path}/#{namespace}"
 
-            all_namespaces << namespace
-        end
-        all_namespaces
-    }
-rescue Exception => exception
-    puts exception
-    exit 10
-end
-puts "---------------------------------------------------------------------------"
-puts 'Copying configuration files'
-puts "---------------------------------------------------------------------------"
+      entry['from'] = File.expand_path(entry['from'], base_entry_path)
+      entry['to'] = File.expand_path(entry['to'], base_entry_path)
 
-unless options[:force]
-    puts "Some files in your home directory could be overwritten. Continue? (y/n)"
-    unless gets.chomp =~ /^[Yy]/
-        puts 'Aborting...'
-        exit 2
+      # Need to add trailing backslash for rsync to recognice folders
+      # having additional backslash at the end of the path works
+      # e.g. /myfolder// is valid
+      entry['from'] << '/' if File.directory? entry['from']
+      entry['to'] << '/' if File.directory? entry['to']
     end
+  end
+rescue StandardError => e
+  puts "Reading file #{config_files_sync_file_path} failed due to error:\n#{e}"
+  exit 10
 end
 
-do_dry_run = options[:dry_run]
-do_quiet = !(options[:verbose]) or true
+fsync = FileRsync.new(dry_run: do_dry_run, quiet: !do_verbose)
 
-fsync = FileRsync.new(dry_run: do_dry_run, quiet: do_quiet)
+files_modified_in_dotfiles_repo = `git ls-files -md`.split
 
-puts "INFO: dry run: no files will be copied\n" if do_dry_run
+puts_header 'Copying files...'
 
-namespaces.each do |namespace|
-  puts "Copying files in namespace #{namespace[:name]}"
+sync_files.each do |namespace, file_list|
+  puts "Copying files in namespace: #{namespace}"
 
-  namespace[:file_list].each do |entry|
+  file_list.each do |entry|
     from = entry['from']
     to = entry['to']
 
-    to, from = from, to if options[:reverse]
+    to, from = from, to if copy_to_dotfiles
+
+    unless File.exist? from
+      puts "Warn: Skipping file not found: #{from}"
+      next
+    end
+
+    if copy_to_dotfiles && files_modified_in_dotfiles_repo.include?(to)
+      puts "Warn: Skipping file modified in the repo to avoid overriding: #{to}"
+      next
+    end
 
     fsync.rsync_files(from, to)
   end

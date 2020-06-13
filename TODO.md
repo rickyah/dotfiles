@@ -15,7 +15,7 @@
 	[] Use git-config conditional includes (https://git-scm.com/docs/git-config#_conditional_includes)
 
 [] Allow sync comand to only sync a subset of the files (categories)
-	[] Use just one rsync file instead of one per folder with different categories as an obj map
+	[X] Use just one rsync file instead of one per folder with different categories as an obj map
 	[] Add a parameter to specify the categories to sync, comma separated
 
 [] Add support for SDKMAN

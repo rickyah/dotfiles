@@ -18,7 +18,7 @@
     "nvim": [
         {
             "from": "init.vim",
-            "to": "~/.config/nvim/"
+            "to": "~/.config/nvim/init.vim"
         },
         {
             "from": "vimrc",

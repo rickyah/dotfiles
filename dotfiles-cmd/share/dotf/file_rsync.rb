@@ -14,11 +14,11 @@ class FileRsync
   end
 
   def rsync_files(source_path, dest_path)
-    cmd = "rsync #{@rsync_args} #{source_path} #{dest_path}"
+    cmd = "rsync #{@rsync_args} \"#{source_path}\" \"#{dest_path}\""
 
     dry_run_warning = ''
-    dry_run_warning = '(DRY RUN)' if @dry_run
-    puts "#{dry_run_warning} #{source_path} --> #{dest_path}"
+    dry_run_warning = '(DRY RUN) ' if @dry_run
+    puts "#{dry_run_warning}#{source_path} --> #{dest_path}"
     puts "executing command: [#{cmd}]" unless @quiet
     `#{cmd}`
   end
