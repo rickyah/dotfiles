@@ -2,12 +2,15 @@
 # frozen_string_literal: true
 
 # Usage: dotf config-files
-# Help: Syncs a sets of configuration files stored on this repository to the system
+# Help: Copies configuration files stored on this repository to specific locations in the system
 #
 # Arguments:
-#   --dry-run: do a dry run execution (just print the results on the screen, no file will be synced)
-#   --force:   do not ask the user for confirmation
-#   --reverse: syncs your system files to this repository
+#  --dry-run: do a dry run execution (just print the results on the screen, no file will be synced)
+#  --force:   do not ask the user for confirmation
+#  --reverse: syncs your system files to this repository
+#  --verbose: Make rsync operations to show all the information
+#  --namespaces:
+#  --ns-list
 
 # Summary: At the folder configuration/config-files we save a file named
 # rsync_list.json containing a mapping between the configuration files stored
@@ -35,58 +38,59 @@
 require 'pathname'
 require 'json'
 require "#{ENV['_DOTF_ROOT']}/share/dotf/file_rsync"
+require "#{ENV['_DOTF_ROOT']}/share/dotf/ui"
 
 # parse arguments
 require 'optparse'
 options = {}
+options_help = {
+  dry_run: 'Runs the command printing the operations to perform without making any changes in the files',
+  force: 'Does not ask the user for confirmation about overriding files ',
+  reverse: 'Syncs the files in your system to the dotfiles repo, useful to bring back to the repo tweaks you may do adhoc in the system\'s configuration',
+  verbose: 'Make rsync operations to print the full information',
+  list_namespaces: 'List the namespaces defined on the rsync_file and exits',
+  namespaces: 'Subset of namespaces to sync, separated by commas (,)',
+  file: 'Path to rsync file'
+}
+
 OptionParser.new do |opt|
-  opt.on('--dry-run') { |o| options[:dry_run] = o }
-  opt.on('--force', '-f') { |o| options[:force] = o }
-  opt.on('--reverse', '-r') { |o| options[:reverse] = o }
-  opt.on('--verbose', '-v') { |o| options[:verbose] = o }
+  opt.banner = 'Copies configuration files stored on this repository to specific locations in the system'
+
+  opt.on('--dry-run', options_help[:dry_run]) { |o| options[:dry_run] = o }
+  opt.on('--force', '-f', options_help[:force]) { |o| options[:force] = o }
+  opt.on('--reverse', '-r', options_help[:reverse]) { |o| options[:reverse] = o }
+  opt.on('--verbose', '-v', options_help[:verbose]) { |o| options[:verbose] = o }
+  opt.on('--list-namespaces', options_help[:list_namespaces]) { |o| options[:list_namespaces] = o }
+  opt.on('--namespaces=[ns1,ns2,nsN]', '-n', options_help[:namespaces]) { |o| options[:namespaces] = o }
+  opt.on('--file=[FILE PATH]', options_help[:file]) { |o| options[:file] = o }
 end.parse!
 
 options[:dry_run] = !ENV['DOTFILES_DRY_RUN'].nil? || options[:dry_run]
 do_dry_run = options[:dry_run] or false
-do_verbose = !(options[:verbose]) or false
+do_verbose = options[:verbose] or false
 do_force = options[:force] or false
 copy_to_dotfiles = options[:reverse]
+namespaces_to_sync = (options[:namespaces] || '').split(',')
+namespaces_to_sync.reject! { |s| s.nil? || s.strip.empty? }
+
+UI.set_verbose do_verbose
 
 config_files_folder_path = "#{ENV['_DOTF_ROOT']}/../configuration/config-files/"
 config_files_sync_file_path = "#{config_files_folder_path}rsync_list.json"
 
-def puts_header(text)
-  puts '---------------------------------------------------------------------'
-  puts text
-  puts '----------------------------------------------------------------------'
-end
+config_files_sync_file_path = options[:file] unless options[:file].nil?
 
-# early checks
+# early check: config file exist
 unless File.exist? config_files_sync_file_path
-  puts "Error: could not find sync file at '#{config_files_sync_file_path}'"
-  exit 1
+  UI.fatal "Couldn't find sync file at '#{config_files_sync_file_path}'", error_code: 1
 end
 
-puts_header "Info: dry run: no files will be copied\n" if do_dry_run
-
-unless do_force || do_dry_run
-  destination = copy_to_dotfiles ? 'dotfiles' : 'home'
-  puts "Some files in your #{destination} directory will be overwritten. Continue? (y/n)"
-  unless gets.chomp =~ /^[Yy]/
-    puts 'Aborting...'
-    exit 2
-  end
-end
-
+# read sync config file
 begin
-  puts_header 'Read rsync config file'
+  UI.info "Reading file: #{config_files_sync_file_path}"
+  sync_config = JSON.parse File.read(config_files_sync_file_path)
 
-  puts "File found at #{config_files_sync_file_path}" if File.exist? config_files_sync_file_path
-
-  sync_files = JSON.parse File.read(config_files_sync_file_path)
-
-  puts '0xFABADA' + Dir.pwd
-  sync_files.each do |namespace, file_list|
+  sync_config.each do |namespace, file_list|
     file_list.each do |entry|
       base_entry_path = "#{config_files_folder_path}/#{namespace}"
 
@@ -101,18 +105,60 @@ begin
     end
   end
 rescue StandardError => e
-  puts "Reading file #{config_files_sync_file_path} failed due to error:\n#{e}"
-  exit 10
+  msg = "Reading file #{config_files_sync_file_path} failed due to error:\n#{e}"
+  UI.fatal msg, error_code: 10
+end
+UI.info "Successfull read sync config file: #{config_files_sync_file_path}"
+
+# special case: --list-namespaces option should prints namespaces and exit
+if options[:list_namespaces]
+  UI.message "Available namespaces:\n#{sync_config.keys.join("\n")}"
+  exit 0
+end
+
+# early check: namespaces to sync actually are defined in the file
+
+if namespaces_to_sync.any?
+  invalid_namespaces = namespaces_to_sync - sync_config.keys
+  if invalid_namespaces.any?
+    msg = 'You tried to sync namespace(s) that are not defined in the sync config file:'
+    msg += "\n"
+    msg += invalid_namespaces.join("\n")
+    UI.fatal msg, error_code: 3
+  end
+end
+
+UI.info 'Dry run: no files will be copied' if do_dry_run
+
+UI.info 'Reverse option set: we will copy files from the system to this repository.' if copy_to_dotfiles
+
+unless do_force || do_dry_run
+  destination = copy_to_dotfiles ? 'dotfiles' : 'home'
+  UI.message "Some files in your #{destination} directory will be overwritten. Continue? (y/n)"
+  unless gets.chomp =~ /^[Yy]/
+    UI.fatal 'Aborting...', error_code: 2
+  end
 end
 
 fsync = FileRsync.new(dry_run: do_dry_run, quiet: !do_verbose)
 
-files_modified_in_dotfiles_repo = `git ls-files -md`.split
+UI.info 'Copying files...'
 
-puts_header 'Copying files...'
+if namespaces_to_sync.any?
+  UI.info "Only syncing these namespaces:\n  #{namespaces_to_sync.join("\n  ")}"
+end
 
-sync_files.each do |namespace, file_list|
-  puts "Copying files in namespace: #{namespace}"
+files_modified_in_dotfiles_repo = `git ls-files -md`.split.map{|f| File.expand_path f}
+UI.info "Found files modified in repository:\n  #{files_modified_in_dotfiles_repo.join("\n  ")}"
+
+sync_config.each do |namespace, file_list|
+  # filter out namespaces not marked to sync a subset of
+
+  if namespaces_to_sync.any? && !namespaces_to_sync.include?(namespace)
+    next
+  end
+
+  UI.message "Copying files in namespace: #{namespace}"
 
   file_list.each do |entry|
     from = entry['from']
@@ -121,12 +167,13 @@ sync_files.each do |namespace, file_list|
     to, from = from, to if copy_to_dotfiles
 
     unless File.exist? from
-      puts "Warn: Skipping file not found: #{from}"
+      UI.warning "Skipping file not found: #{from}"
       next
     end
 
     if copy_to_dotfiles && files_modified_in_dotfiles_repo.include?(to)
-      puts "Warn: Skipping file modified in the repo to avoid overriding: #{to}"
+      msg = "(SKIPPING) #{from} -> #{to} (file modified in the repo would be overriden)"
+      UI.message msg
       next
     end
 
