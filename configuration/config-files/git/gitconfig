@@ -37,7 +37,7 @@
 	excludesfile = ~/.gitignore_global
   mergeoptions = --no-ff --no-commit
   autocrlf = input
-  pager = "delta"
+  pager = delta
 
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
@@ -62,7 +62,7 @@
   cr = checkout --
   unstage = reset HEAD
   # fco - checkout git branch/tag with fzf
-  fco = "!f() { source ~/.config/shell/functions; fco; }; f"
+  fco = "!f() { source ~/.config/shell/50_functions; fco; }; f"
 
 # submodules
   sm = submodule
