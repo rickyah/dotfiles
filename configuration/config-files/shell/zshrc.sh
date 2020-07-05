@@ -68,3 +68,5 @@ for file in ~/.config/shell/*; do
 done
 unset file
 
+# Enable fzf terminal shorcuts
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
