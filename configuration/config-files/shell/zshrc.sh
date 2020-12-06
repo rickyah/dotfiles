@@ -63,7 +63,7 @@ RPROMPT='$(battery_pct_prompt)'
 source $ZSH/oh-my-zsh.sh
 
 # load configuration files
-for file in ~/.config/shell/*; do
+for file in ~/.config/config/shell/*; do
     [ -r "$file" ] && source "$file"
 done
 unset file
