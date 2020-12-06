@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 tap 'homebrew/cask-fonts'
-cask 'font-caskaydiacove-nerd-font'
-cask 'font-firacode-nerd-font'
+cask 'font-caskaydia-cove-nerd-font'
+cask 'font-fira-code-nerd-font'
 cask 'font-inconsolata-dz-for-powerline'
-cask 'font-inconsolatago-nerd-font'
-cask 'font-jetbrainsmono-nerd-font'
+cask 'font-inconsolata-go-nerd-font'
+cask 'font-jetbrains-mono-nerd-font'
