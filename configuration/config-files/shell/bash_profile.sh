@@ -29,3 +29,7 @@ fi
 
 
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/ricardo.amores/.sdkman"
+[[ -s "/Users/ricardo.amores/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/ricardo.amores/.sdkman/bin/sdkman-init.sh"
