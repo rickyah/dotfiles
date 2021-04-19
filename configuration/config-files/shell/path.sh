@@ -1,15 +1,11 @@
 # default path
 PATH=PATH:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin
 
-# Add ~/bin and ./bin into path
-PATH=$PATH:$HOME/bin:./bin
-
-# dotnet core path
-PATH=$PATH:/usr/local/share/dotnet
-
-# mono path
+CURRENT_DIR_BIN_PATH=$PATH:$HOME/bin:./bin
+DOTNET_CORE_PATH=/usr/local/share/dotnet
 MONO_PATH=/Library/Frameworks/Mono.framework/Versions/Current/bin
-PATH=$PATH:$MONO_PATH
+
+PATH=$PATH:$CURRENT_DIR_BIN_PATH:$DOTNET_CORE_PATH:$MONO_PATH
 
 export MONO_PATH
 export PATH
