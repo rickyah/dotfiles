@@ -46,23 +46,23 @@
         },
         {
             "from": "exports.sh",
-            "to": "~/.config/config/shell/10_exports"
+            "to": "~/.config/shell/10_exports"
         },
         {
             "from": "aliases.sh",
-            "to": "~/.config/config/shell/20_aliases"
+            "to": "~/.config/shell/20_aliases"
         },
         {
             "from": "path.sh",
-            "to": "~/.config/config/shell/30_path"
+            "to": "~/.config/shell/30_path"
         },
         {
             "from": "external_tools_init.sh",
-            "to": "~/.config/config/shell/40_external_tools_init"
+            "to": "~/.config/shell/40_external_tools_init"
         },
         {
             "from": "functions.sh",
-            "to": "~/.config/config/shell/50_functions"
+            "to": "~/.config/shell/50_functions"
         }
     ],
     "tig": [
