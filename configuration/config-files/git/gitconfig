@@ -1,6 +1,6 @@
 [user]
 	name = Ricardo Amores
-	email = rickyah@gmail.com
+	email = ricardo.amores@scopely.com
 
 [color]
 	ui = true
@@ -132,6 +132,13 @@
 	# push the current local branch to origin and track it
 	psnb = "!f() { git push origin $(git rev-parse --abbrev-ref HEAD) --set-upstream;}; f"
 	pl = pull --prune
+	ps-f = "push --force"
+	# push force without push -f privileges: delete the remote branch and push it again
+	ps-ff = "!f(){\
+		BRANCH_NAME=$(git rev-parse --abbrev-ref --symbolic-full-name HEAD);\
+		git push origin :$BRANCH_NAME;\
+		git psnb;\
+	};f"
 
 # status & log
 	s = status -sb
