@@ -63,7 +63,8 @@
 	unstage = reset HEAD
 	# fco - checkout git branch/tag with fzf
 	fco = "!f() { source ~/.config/shell/50_functions; fco; }; f"
-
+	fbd = "!f() { source ~/.config/shell/50_functions; fbd; }; f"
+	fbfd = "!f() { source ~/.config/shell/50_functions; fbD; }; f"
 # submodules
 	sm = submodule
 	# update submodules
