@@ -16,6 +16,12 @@
 # find aliases
 alias fn='find . -iname $1'
 
+# exa (replacement for ls)
+if  command -v exa &> /dev/null
+then
+    alias ls=exa
+fi
+
 # Get OS X Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
 alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm update npm -g; npm update -g; sudo gem update'
 
