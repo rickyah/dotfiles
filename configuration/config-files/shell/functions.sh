@@ -62,7 +62,7 @@ fbd() {
   if [ "$trace" = true ] ; then
     echo "command to run: 'git branch -d $cmd'"
   else
-    git branch -d "$cmd"
+    git branch -d $cmd
   fi
 }
 
@@ -83,6 +83,6 @@ fbD() {
   if [ "$trace" = true ] ; then
     echo "command to run: 'git branch -D $cmd'"
   else
-    git branch -D "$cmd"
+    git branch -D $cmd
   fi
 }
