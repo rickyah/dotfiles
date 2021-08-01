@@ -169,8 +169,7 @@
 
 [push]
 	default=simple
-[commit]
-	template = ~/.stCommitMsg
+
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
