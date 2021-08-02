@@ -126,14 +126,26 @@
 	strm = "!f() { git stash drop stash@{$1}; }; f"
 
 #commits
+	# Creates a commit using the EDITOR. Appends the diff of the changes as comments
+	# in the edited commit message for reference
 	c = commit -v
+
+	# Creates a commit with a message string passed as parameter without using
+	# the EDITOR
 	cm = commit -m
+	
+	# Stages all modified/added files and creates a commit with a message string 
+	# passed as parameter without using the EDITOR 
 	cma = commit -am
 
+	# Creates a fixup commit from the latest commit in HEAD
+	cfr = "!f() { git commit --fixup HEAD; }; f"
+	
+	# Creates a fixup commit to the commit in the history that 
+	# matches the specified regular expression
+	cfs = "!f() { git commit --fixup :/$1; }; f"
+
 # pushes & pulls
-	# fixup
-	cfr = "!f() { git commit --fixup HEAD~$1; f"
-	cfs = "!f() { git commit --fixup :/$1;} f"
 	f = fetch --prune
 	# always prune remote branches
 	fetch = fetch --prune
