@@ -24,4 +24,5 @@ FZF_PREVIEW_OPTIONS="--preview 'bat --style=numbers --color=always {}' --bind='f
 export FZF_DEFAULT_OPTS="--height 40% $FZF_PREVIEW_OPTIONS"
 export FZF_DEFAULT_COMMAND="fd --type f --type l $FD_OPTIONS"
 
-
+# Opt out of MS telemetry
+export DOTNET_CLI_TELEMETRY_OPTOUT=true
