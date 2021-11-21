@@ -1,0 +1,10 @@
+# ripgrep requires setting the envvar RIPGREP_CONFIG_PATH in order to load the
+# settings on this file
+# see https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file
+
+--max-columns=180
+--max-columns-preview
+
+# Add Unity engine file types
+--type-add
+unity:*.{unity,prefab,meta}

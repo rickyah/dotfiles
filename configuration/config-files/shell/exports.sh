@@ -15,14 +15,18 @@ export LC_ALL="en_US.UTF-8"
 # Highlight section titles in manual pages
 export LESS_TERMCAP_md="$ORANGE"
 
-# Don’t clear the screen after quitting a manual page
+# Don't clear the screen after quitting a manual page
 export MANPAGER="less -RFX"
 
 # FZ options
-FD_OPTIONS="--exclude .git" 
+FD_OPTIONS="--exclude .git"
 FZF_PREVIEW_OPTIONS="--preview 'bat --style=numbers --color=always {}' --bind='f2:toggle-preview' --preview-window='right:hidden:wrap'"
+
 export FZF_DEFAULT_OPTS="--height 40% $FZF_PREVIEW_OPTIONS"
 export FZF_DEFAULT_COMMAND="fd --type f --type l $FD_OPTIONS"
 
 # Opt out of MS telemetry
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
+
+# Enable custom configuration for Ripgrep
+export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep/ripgreprc
