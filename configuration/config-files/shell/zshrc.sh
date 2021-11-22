@@ -51,7 +51,7 @@ rbenv
 brew
 colorize
 gitfast
-osx
+macos
 colored-man-pages
 z)
 
