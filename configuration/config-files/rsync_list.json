@@ -49,12 +49,12 @@
             "to": "~/.config/shell/10_exports"
         },
         {
-            "from": "aliases.sh",
-            "to": "~/.config/shell/20_aliases"
+            "from": "path.sh",
+            "to": "~/.config/shell/20_path"
         },
         {
-            "from": "path.sh",
-            "to": "~/.config/shell/30_path"
+            "from": "aliases.sh",
+            "to": "~/.config/shell/30_aliases"
         },
         {
             "from": "external_tools_init.sh",

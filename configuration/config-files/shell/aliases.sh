@@ -17,7 +17,7 @@
 alias fn='find . -iname $1'
 
 # exa (replacement for ls)
-if  command -v exa &> /dev/null
+if command -v exa &> /dev/null
 then
     alias ls=exa
 fi

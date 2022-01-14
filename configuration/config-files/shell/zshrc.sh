@@ -63,16 +63,19 @@ RPROMPT='$(battery_pct_prompt)'
 
 source $ZSH/oh-my-zsh.sh
 
-# load configuration files
-for file in ~/.config/shell/*; do
-    [ -r "$file" ] && source "$file"
-done
-unset file
-
 # Enable fzf terminal shorcuts
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Powerline 10K theme
-source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# load configuration files
+for file in ~/.config/shell/*; do
+    # -r checks file exists and have read permission
+    if [ -r "$file" ]; then
+      source "$file"
+    else
+        echo "Error, could not source file $file"
+    fi
+done
+unset file
