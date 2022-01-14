@@ -90,5 +90,11 @@
             "from": "./KeyBindings/",
             "to": "~/Library/Developer/Xcode/UserData/KeyBindings/"
         }
+    ],
+    "rectangle": [
+        {
+            "from": "./rectangle_settings.plist",
+            "to": "~/Library/Preferences/com.knollsoft.Rectangle.plist"
+        }
     ]
 }
