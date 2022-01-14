@@ -2,11 +2,11 @@
 	# This setting forces you to set your user.name and user.email
 	# using a configuration if there is no global configuration set
 	useConfigOnly = true
+	name = Ricardo Amores
+	email = rickyah@gmail.com
 
 # These settings are defined in global gitconfig files so
 # the emails are not stored publicly on the git repository
-[include]
-	path = ~/personal_user_gitconfig
 
 [includeIf "gitdir:~/Development/work/"]
 	path = ~/work_user_gitconfig
@@ -133,15 +133,15 @@
 	# Creates a commit with a message string passed as parameter without using
 	# the EDITOR
 	cm = commit -m
-	
-	# Stages all modified/added files and creates a commit with a message string 
-	# passed as parameter without using the EDITOR 
+
+	# Stages all modified/added files and creates a commit with a message string
+	# passed as parameter without using the EDITOR
 	cma = commit -am
 
 	# Creates a fixup commit from the latest commit in HEAD
 	cfr = "!f() { git commit --fixup HEAD; }; f"
-	
-	# Creates a fixup commit to the commit in the history that 
+
+	# Creates a fixup commit to the commit in the history that
 	# matches the specified regular expression
 	cfs = "!f() { git commit --fixup :/$1; }; f"
 
