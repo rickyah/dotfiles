@@ -9,8 +9,9 @@ MakeMakefile::Logging.instance_variable_set(:@logfile, File::NULL)
 def install_homebrew
   app_name = 'Homebrew'
   app_cmd = 'brew'
-  app_install_cmd = 'ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"'
-
+  homebrew_install_cmd = 'ruby -e "$(curl -fsSL /bin/bash -c https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
+  homebrew_setup_cmd = 'eval "$(/opt/homebrew/bin/brew shellenv)"'
+  app_install_cmds = [homebrew_install_cmd, homebrew_setup_cmd]
   brewfile_filepath = "#{ENV['_DOTF_ROOT']}/../configuration/Brewfile"
 
   puts '---------------------------------------------------------------------------------'
@@ -19,15 +20,15 @@ def install_homebrew
 
   puts 'Looking for Homebrew executable...'
   if find_executable(app_cmd).nil?
-
-    puts "#{app_name} was not found in the system, To install it, this command needs be executed:"
-    puts app_install_cmd.to_s
-
+    puts "#{app_name} was not found in the system, To install it, theses commands needs be executed:"
+    puts app_install_cmds.join("\n")
     puts 'Do you want me to install it? (y/n)'
 
     if gets.chomp =~ /^[Yy]/
       puts "Ok, installing #{app_name}"
-      system app_install_cmd
+      app_install_cmds.each do |cmd|
+        system cmd
+      end
     else
       puts 'Aborting'
       exit 2
