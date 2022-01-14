@@ -140,7 +140,7 @@ unless do_force || do_dry_run
   end
 end
 
-fsync = FileRsync.new(dry_run: do_dry_run, quiet: !do_verbose)
+fsync = FileRsync.new(dry_run: do_dry_run)
 
 UI.info 'Copying files...'
 
@@ -158,7 +158,7 @@ sync_config.each do |namespace, file_list|
     next
   end
 
-  UI.message "Copying files in namespace: #{namespace}"
+  UI.message "\nCopying files in namespace: #{namespace}"
 
   file_list.each do |entry|
     from = entry['from']
