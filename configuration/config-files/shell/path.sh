@@ -8,8 +8,9 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 CURRENT_DIR_BIN_PATH=$PATH:$HOME/bin:./bin
 DOTNET_CORE_PATH=/usr/local/share/dotnet
 MONO_PATH=/Library/Frameworks/Mono.framework/Versions/Current/bin
+GNU_CORE_UTILS_PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH
 
-PATH=$PATH:$CURRENT_DIR_BIN_PATH:$DOTNET_CORE_PATH:$MONO_PATH
+PATH=$PATH:$CURRENT_DIR_BIN_PATH:$GNU_CORE_UTILS_PATH:$DOTNET_CORE_PATH:$MONO_PATH
 
 export MONO_PATH
 export PATH
