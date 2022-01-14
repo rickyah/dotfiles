@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "#{ENV['_DOTF_ROOT']}/share/dotf/ui"
+
 class FileRsync
   @quiet = false
   @dry_run = false
@@ -16,10 +18,8 @@ class FileRsync
   def rsync_files(source_path, dest_path)
     cmd = "rsync #{@rsync_args} \"#{source_path}\" \"#{dest_path}\""
 
-    dry_run_warning = ''
-    dry_run_warning = '(DRY RUN) ' if @dry_run
-    puts "#{dry_run_warning}#{source_path} --> #{dest_path}"
-    puts "executing command: [#{cmd}]" unless @quiet
-    `#{cmd}`
+    UI.info "#{dry_run_warning}#{source_path} --> #{dest_path}"
+    UI.message "executing command: [#{cmd}]" 
+    `#{cmd}` unless @dry_run
   end
 end
