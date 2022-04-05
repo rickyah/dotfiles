@@ -19,7 +19,7 @@ alias fn='find . -iname $1'
 # exa (replacement for ls)
 if command -v exa &> /dev/null
 then
-    alias ls=exa
+    alias ls="exa --icons"
 fi
 
 # Get OS X Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
