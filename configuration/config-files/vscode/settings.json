@@ -19,7 +19,7 @@
     "editor.minimap.enabled": false,
     "editor.minimap.renderCharacters": false,
     "workbench.sideBar.location": "right",
-    "workbench.colorTheme": "Monokai Dark Soda",
+    "workbench.colorTheme": "Gruvbox Dark Medium",
     "window.titleBarStyle": "native",
     "window.nativeTabs": true,
     "window.zoomLevel": 0,
@@ -94,5 +94,16 @@
     "sync.forceDownload": false,
     "gitlens.advanced.telemetry.enabled": false,
 	"editor.detectIndentation": false,
-	"editor.autoIndent": false
+    "editor.autoIndent": false,
+    "terminal.integrated.env.osx": {
+        "FIG_NEW_SESSION": "1"
+    },
+    "editor.accessibilitySupport": "off",
+    "editor.autoClosingBrackets": "never",
+    "editor.autoClosingDelete": "never",
+    "editor.autoClosingOvertype": "never",
+    "editor.autoClosingQuotes": "never",
+    "omnisharp.useGlobalMono": "always",
+    "audioCues.lineHasError": "off",
+    "audioCues.lineHasBreakpoint": "off"
 }
