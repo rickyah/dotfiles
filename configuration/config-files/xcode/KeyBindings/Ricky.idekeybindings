@@ -8,11 +8,51 @@
 		<array>
 			<dict>
 				<key>Action</key>
+				<string>ReleaseGPUFrame:</string>
+				<key>Alternate</key>
+				<string>NO</string>
+				<key>CommandGroupID</key>
+				<string>Xcode.IDEKit.CmdDefinition.PauseContinue</string>
+				<key>CommandID</key>
+				<string>Xcode.GPUToolsKit.CmdDefinition.ReleaseGPUFrame</string>
+				<key>Group</key>
+				<string>Debug Menu for GPU Frame Debugger</string>
+				<key>GroupID</key>
+				<string>Xcode.GPUToolsKit.MenuDefinition.Debug</string>
+				<key>GroupedAlternate</key>
+				<string>NO</string>
+				<key>Keyboard Shortcut</key>
+				<string></string>
+				<key>Navigation</key>
+				<string>NO</string>
+				<key>Title</key>
+				<string>Release GPU Workload</string>
+			</dict>
+			<dict>
+				<key>Action</key>
+				<string>stepToPreviousDisplayableCall:</string>
+				<key>Alternate</key>
+				<string>NO</string>
+				<key>CommandID</key>
+				<string>Xcode.GPUToolsKit.CmdDefinition.StepPreviousDisplayableCall</string>
+				<key>Group</key>
+				<string>Debug Menu for GPU Frame Debugger</string>
+				<key>GroupID</key>
+				<string>Xcode.GPUToolsKit.MenuDefinition.Debug</string>
+				<key>GroupedAlternate</key>
+				<string>NO</string>
+				<key>Navigation</key>
+				<string>NO</string>
+				<key>Title</key>
+				<string>Step to Previous Draw/Dispatch Call</string>
+			</dict>
+			<dict>
+				<key>Action</key>
 				<string>newTab:</string>
 				<key>Alternate</key>
 				<string>NO</string>
 				<key>CommandID</key>
-				<string>Xcode.IDEKit.CmdDefinition.NewTab</string>
+				<string>Xcode.IDEKit.CmdDefinition.NewWindowTab</string>
 				<key>Group</key>
 				<string>File Menu</string>
 				<key>GroupID</key>
@@ -24,7 +64,7 @@
 				<key>Parent Title</key>
 				<string>New</string>
 				<key>Title</key>
-				<string>Tab</string>
+				<string>Window Tab</string>
 			</dict>
 			<dict>
 				<key>Action</key>
@@ -48,35 +88,13 @@
 			</dict>
 			<dict>
 				<key>Action</key>
-				<string>stepToNextDrawCall:</string>
+				<string>pauseOrContinue:</string>
 				<key>Alternate</key>
 				<string>NO</string>
 				<key>CommandGroupID</key>
-				<string>Xcode.IDEKit.CmdDefinition.StepOver</string>
+				<string>Xcode.IDEKit.CmdDefinition.PauseContinue</string>
 				<key>CommandID</key>
-				<string>Xcode.GPUToolsKit.CmdDefinition.StepNextDrawCall</string>
-				<key>Group</key>
-				<string>Debug Menu for OpenGL ES</string>
-				<key>GroupID</key>
-				<string>Xcode.GPUToolsKit.MenuDefinition.Debug</string>
-				<key>GroupedAlternate</key>
-				<string>NO</string>
-				<key>Keyboard Shortcut</key>
-				<string></string>
-				<key>Navigation</key>
-				<string>NO</string>
-				<key>Title</key>
-				<string>Step to Next OpenGL ES Draw Call</string>
-			</dict>
-			<dict>
-				<key>Action</key>
-				<string>stepOver:</string>
-				<key>Alternate</key>
-				<string>NO</string>
-				<key>CommandGroupID</key>
-				<string>Xcode.IDEKit.CmdDefinition.StepOver</string>
-				<key>CommandID</key>
-				<string>Xcode.IDEKit.CmdDefinition.StepOver</string>
+				<string>Xcode.IDEKit.CmdDefinition.PauseContinue</string>
 				<key>Group</key>
 				<string>Debug Menu</string>
 				<key>GroupID</key>
@@ -84,11 +102,11 @@
 				<key>GroupedAlternate</key>
 				<string>NO</string>
 				<key>Keyboard Shortcut</key>
-				<string></string>
+				<string></string>
 				<key>Navigation</key>
 				<string>NO</string>
 				<key>Title</key>
-				<string>Step Over</string>
+				<string>Pause / Continue</string>
 			</dict>
 			<dict>
 				<key>Action</key>
@@ -150,7 +168,7 @@
 				<key>Parent Title</key>
 				<string>Breakpoints</string>
 				<key>Title</key>
-				<string>Add Breakpoint at Current Line</string>
+				<string>Create Breakpoint at Current Line</string>
 			</dict>
 		</array>
 		<key>Version</key>

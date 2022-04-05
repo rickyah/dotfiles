@@ -570,5 +570,10 @@
 	{
 		"key": "shift+cmd+z",
 		"command": "-extension.vscode-git-automator.addAndCommitCurrentFile"
-	}
+    },
+    {
+        "key": "alt+space",
+        "command": "editor.action.peekDefinition",
+        "when": "editorHasDefinitionProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
+    }
 ]
