@@ -1,0 +1,67 @@
+{
+  "entries": {
+    "tap": {
+      "homebrew/cask-fonts": {
+        "revision": "79e1524145c42448095a5f4e646b2d0fe67fcb01"
+      }
+    },
+    "cask": {
+      "font-caskaydia-cove-nerd-font": {
+        "version": "2.1.0",
+        "options": {
+          "full_name": "font-caskaydia-cove-nerd-font"
+        }
+      },
+      "font-fira-code-nerd-font": {
+        "version": "2.1.0",
+        "options": {
+          "full_name": "font-fira-code-nerd-font"
+        }
+      },
+      "font-inconsolata-dz-for-powerline": {
+        "version": "latest",
+        "options": {
+          "full_name": "font-inconsolata-dz-for-powerline"
+        }
+      },
+      "font-inconsolata-go-nerd-font": {
+        "version": "2.1.0",
+        "options": {
+          "full_name": "font-inconsolata-go-nerd-font"
+        }
+      },
+      "font-jetbrains-mono-nerd-font": {
+        "version": "2.1.0",
+        "options": {
+          "full_name": "font-jetbrains-mono-nerd-font"
+        }
+      },
+      "font-hack-nerd-font": {
+        "version": "2.1.0",
+        "options": {
+          "full_name": "font-hack-nerd-font"
+        }
+      }
+    }
+  },
+  "system": {
+    "macos": {
+      "big_sur": {
+        "HOMEBREW_VERSION": "3.3.9",
+        "HOMEBREW_PREFIX": "/opt/homebrew",
+        "Homebrew/homebrew-core": "f0419c626da759f741793e0b61cec72903a40735",
+        "CLT": "12.4.0.0.1.1610135815",
+        "Xcode": "12.5.1",
+        "macOS": "11.1"
+      },
+      "monterey": {
+        "HOMEBREW_VERSION": "3.3.9",
+        "HOMEBREW_PREFIX": "/opt/homebrew",
+        "Homebrew/homebrew-core": "4f4dd74149bfaefe3190fd1d2f35476782333290",
+        "CLT": "13.2.0.0.1.1638488800",
+        "Xcode": "13.2.1",
+        "macOS": "12.1"
+      }
+    }
+  }
+}
