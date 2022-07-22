@@ -2,7 +2,7 @@
 PATH=PATH:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin
 
 # Homebrew path
-eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(brew --prefix)/bin/brew shellenv"
 
 # my custom paths
 CURRENT_DIR_BIN_PATH=$PATH:$HOME/bin:./bin
