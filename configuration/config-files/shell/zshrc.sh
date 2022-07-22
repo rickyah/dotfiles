@@ -72,6 +72,8 @@ source $ZSH/oh-my-zsh.sh
 # Enable fzf terminal shorcuts
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# enable rust cargo
+[ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
 
 # load configuration files
 for file in ~/.config/shell/*; do
