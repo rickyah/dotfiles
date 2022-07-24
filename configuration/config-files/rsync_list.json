@@ -1,106 +1,112 @@
 {
-    "bat": [
-        {
-            "from": "batrc.sh",
-            "to": "~/.batrc"
-        }
-    ],
-    "git": [
-        {
-            "from": "gitconfig",
-            "to": "~/.gitconfig"
-        },
-        {
-            "from": "gitignore_global",
-            "to": "~/.gitignore_global"
-        }
-    ],
-    "nvim": [
-        {
-            "from": "init.vim",
-            "to": "~/.config/nvim/init.vim"
-        },
-        {
-            "from": "vimrc",
-            "to": "~/.vimrc"
-        }
-    ],
-    "ruby": [
-        {
-            "from": "gemrc",
-            "to": "~/.gemrc"
-        }
-    ],
-    "shell": [
-        {
-            "from": "zshrc.sh",
-            "to": "~/.zshrc"
-        },
-        {
-            "from": "bash_profile.sh",
-            "to": "~/.bash_profile"
-        },
-        {
-            "from": "hushlogin",
-            "to": "~/.hushlogin"
-        },
-        {
-            "from": "exports.sh",
-            "to": "~/.config/shell/10_exports"
-        },
-        {
-            "from": "path.sh",
-            "to": "~/.config/shell/20_path"
-        },
-        {
-            "from": "aliases.sh",
-            "to": "~/.config/shell/30_aliases"
-        },
-        {
-            "from": "external_tools_init.sh",
-            "to": "~/.config/shell/40_external_tools_init"
-        },
-        {
-            "from": "functions.sh",
-            "to": "~/.config/shell/50_functions"
-        }
-    ],
-    "tig": [
-        {
-            "from": "tigrc",
-            "to": "~/.tigrc/"
-        }
-    ],
-    "vscode": [
-        {
-            "from": "settings.json",
-            "to": "~/Library/Application Support/Code/User/settings.json"
-        },
-        {
-            "from": "keybindings.json",
-            "to": "~/Library/Application Support/Code/User/keybindings.json"
-        }
-    ],
-    "xcode": [
-        {
-            "from": "./FontAndColorThemes/",
-            "to": "~/Library/Developer/Xcode/UserData/FontAndColorThemes/"
-        },
-        {
-            "from": "./KeyBindings/",
-            "to": "~/Library/Developer/Xcode/UserData/KeyBindings/"
-        }
-    ],
-    "rectangle": [
-        {
-            "from": "./rectangle_settings.plist",
-            "to": "~/Library/Preferences/com.knollsoft.Rectangle.plist"
-        }
-    ],
-    "ripgrep": [
-      {
-        "from": "ripgreprc",
-        "to": "~/.config/ripgrep/ripgreprc"
-      }
-    ]
+  "git": [
+    {
+      "from": "gitconfig",
+      "to": "~/.gitconfig"
+    },
+    {
+      "from": "gitignore_global",
+      "to": "~/.gitignore_global"
+    }
+  ],
+  "nvim": [
+    {
+      "from": "init.vim",
+      "to": "~/.config/nvim/init.vim"
+    },
+    {
+      "from": "vimrc",
+      "to": "~/.vimrc"
+    }
+  ],
+  "ruby": [
+    {
+      "from": "gemrc",
+      "to": "~/.gemrc"
+    }
+  ],
+  "shell": [
+    {
+      "from": "zshrc.sh",
+      "to": "~/.zshrc"
+    },
+    {
+      "from": "bash_profile.sh",
+      "to": "~/.bash_profile"
+    },
+    {
+      "from": "hushlogin",
+      "to": "~/.hushlogin"
+    },
+    {
+      "from": "exports.sh",
+      "to": "~/.config/shell/10_exports"
+    },
+    {
+      "from": "path.sh",
+      "to": "~/.config/shell/20_path"
+    },
+    {
+      "from": "aliases.sh",
+      "to": "~/.config/shell/30_aliases"
+    },
+    {
+      "from": "external_tools_init.sh",
+      "to": "~/.config/shell/40_external_tools_init"
+    },
+    {
+      "from": "functions.sh",
+      "to": "~/.config/shell/50_functions"
+    }
+  ],
+  "tig": [
+    {
+      "from": "tigrc",
+      "to": "~/.config/rig/config"
+    }
+  ],
+  "vscode": [
+    {
+      "from": "settings.json",
+      "to": "~/Library/Application Support/Code/User/settings.json"
+    },
+    {
+      "from": "keybindings.json",
+      "to": "~/Library/Application Support/Code/User/keybindings.json"
+    }
+  ],
+  "xcode": [
+    {
+      "from": "./FontAndColorThemes/",
+      "to": "~/Library/Developer/Xcode/UserData/FontAndColorThemes/"
+    },
+    {
+      "from": "./KeyBindings/",
+      "to": "~/Library/Developer/Xcode/UserData/KeyBindings/"
+    }
+  ],
+  "rectangle": [
+    {
+      "from": "./rectangle_settings.plist",
+      "to": "~/Library/Preferences/com.knollsoft.Rectangle.plist"
+    }
+  ],
+  "ripgrep": [
+    {
+      "from": "ripgreprc",
+      "to": "~/.config/ripgrep/ripgreprc"
+    }
+  ],
+  "alacritty": [
+    {
+      "from": "alacritty.yml",
+      "to": "~/.config/alacritty/alacritty.yml"
+    }
+  ],
+  "bat": [
+    {
+      "from": "batrc.sh",
+      "to": "~/.config/bat/batrc"
+    }
+  ]
 }
