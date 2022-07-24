@@ -12,6 +12,7 @@ export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
 export LANG="en_US"
 export LC_ALL="en_US.UTF-8"
 
+
 # Highlight section titles in manual pages
 export LESS_TERMCAP_md="$ORANGE"
 
@@ -28,5 +29,8 @@ export FZF_DEFAULT_COMMAND="fd --type f --type l $FD_OPTIONS"
 # Opt out of MS telemetry
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
 
-# Enable custom configuration for Ripgrep
+# Enable custom configuration file locations
+export XDG_CONFIG_HOME="$HOME/.config"
+export BAT_CONFIG_PATH=$HOME/.config/bat/batc
 export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep/ripgreprc
+
