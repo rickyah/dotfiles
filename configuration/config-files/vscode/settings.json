@@ -1,6 +1,6 @@
 // Coloque su configuración en este archivo para sobrescribir la configuración predeterminada.
 {
-    "editor.fontFamily": "Fira Code,Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontFamily": "Hack Nerd Font, Fira Code,Menlo, Monaco, 'Courier New', monospace",
     "editor.fontSize": 14,
     "editor.lineHeight": 0,
     "editor.fontLigatures": false,
@@ -23,7 +23,6 @@
     "window.titleBarStyle": "native",
     "window.nativeTabs": true,
     "window.zoomLevel": 0,
-    "editor.renderIndentGuides": true,
     "workbench.editor.revealIfOpen": true,
     "workbench.tips.enabled": false,
 	"window.title": "${activeEditorShort}${separator}${rootName}${dirty}",
@@ -94,7 +93,7 @@
     "sync.forceDownload": false,
     "gitlens.advanced.telemetry.enabled": false,
 	"editor.detectIndentation": false,
-    "editor.autoIndent": false,
+    "editor.autoIndent": "advanced",
     "terminal.integrated.env.osx": {
         "FIG_NEW_SESSION": "1"
     },
@@ -105,5 +104,7 @@
     "editor.autoClosingQuotes": "never",
     "omnisharp.useGlobalMono": "always",
     "audioCues.lineHasError": "off",
-    "audioCues.lineHasBreakpoint": "off"
+    "audioCues.lineHasBreakpoint": "off",
+    "editor.guides.indentation": true,
+    "vscode-neovim.neovimExecutablePaths.darwin": "/usr/local/bin/nvim"
 }
