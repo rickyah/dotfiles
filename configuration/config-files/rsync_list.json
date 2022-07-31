@@ -65,6 +65,12 @@
       "to": "~/.config/rig/config"
     }
   ],
+  "tmux": [
+    {
+      "from": "tmux.conf",
+      "to": "~/.config/tmux/tmux.conf"
+    }
+  ],
   "vscode": [
     {
       "from": "settings.json",
