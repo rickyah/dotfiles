@@ -32,5 +32,6 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=true
 # Enable custom configuration file locations
 export XDG_CONFIG_HOME="$HOME/.config"
 export BAT_CONFIG_PATH=$HOME/.config/bat/batc
+# Enable custom configuration for Ripgrep
 export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep/ripgreprc
 
