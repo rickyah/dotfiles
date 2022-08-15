@@ -19,10 +19,8 @@
     "editor.minimap.enabled": false,
     "editor.minimap.renderCharacters": false,
     "workbench.sideBar.location": "right",
-    "workbench.colorTheme": "Gruvbox Dark Medium",
     "window.titleBarStyle": "native",
     "window.nativeTabs": true,
-    "window.zoomLevel": 0,
     "workbench.editor.revealIfOpen": true,
     "workbench.tips.enabled": false,
 	"window.title": "${activeEditorShort}${separator}${rootName}${dirty}",
@@ -106,5 +104,8 @@
     "audioCues.lineHasError": "off",
     "audioCues.lineHasBreakpoint": "off",
     "editor.guides.indentation": true,
-    "vscode-neovim.neovimExecutablePaths.darwin": "/usr/local/bin/nvim"
+    "vscode-neovim.neovimExecutablePaths.darwin": "/usr/local/bin/nvim",
+    "cmake.configureOnOpen": true,
+    "editor.experimental.stickyScroll.enabled": true,
+    "workbench.colorTheme": "Gruvbox ish Dark Medium"
 }
