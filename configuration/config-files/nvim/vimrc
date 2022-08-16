@@ -1,8 +1,25 @@
+" EDITOR
+
 " enables color highligthing
 syntax on
 
-" Limit width in git commit messages to 72 columns
-autocmd Filetype gitcommit setlocal spell textwidth=72
+
 
 " Show line numbers
 set number
+
+" Use hybrid line numbers 
+:set number relativenumber
+:set nu rnu
+
+
+" KEYBOARD MAPPINGS
+
+"" Exit insert mode pressing j twice in quick succession
+"" quick is defined by the timeout 
+inoremap jj <ESC>
+
+
+" GIT 
+" Limit width in git commit messages to 72 columns
+autocmd Filetype gitcommit setlocal spell textwidth=72
