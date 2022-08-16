@@ -7,4 +7,8 @@
 
 # Add Unity engine file types
 --type-add
-unity:*.{unity,prefab,meta}
+unity:*.{unity,prefab}
+
+# Add Unity engine meta file types
+--type-add
+unitymetas:*.{unity,prefab,meta}
