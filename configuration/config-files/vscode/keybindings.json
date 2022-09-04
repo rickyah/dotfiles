@@ -586,7 +586,7 @@
         "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
     },
     {
-        "key": "cmd+g n",
+        "key": "cmd+g",
         "command": "editor.action.nextMatchFindAction",
         "when": "editorFocus"
     },
@@ -596,7 +596,7 @@
         "when": "editorFocus"
     },
     {
-        "key": "cmd+g p",
+        "key": "shift+cmd+g",
         "command": "editor.action.previousMatchFindAction",
         "when": "editorFocus"
     },

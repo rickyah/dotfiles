@@ -16,7 +16,6 @@
     },
     "editor.wordWrap": "on",
     "editor.wordWrapColumn": 120,
-    "editor.minimap.enabled": false,
     "editor.minimap.renderCharacters": false,
     "workbench.sideBar.location": "right",
     "window.titleBarStyle": "native",
@@ -104,8 +103,14 @@
     "audioCues.lineHasError": "off",
     "audioCues.lineHasBreakpoint": "off",
     "editor.guides.indentation": true,
-    "vscode-neovim.neovimExecutablePaths.darwin": "/usr/local/bin/nvim",
+    "vscode-neovim.neovimExecutablePaths.darwin": "nvim",
     "cmake.configureOnOpen": true,
-    "editor.experimental.stickyScroll.enabled": true,
-    "workbench.colorTheme": "Gruvbox ish Dark Medium"
+    "workbench.colorTheme": "Gruvbox Dark (Medium)",
+    "vscode-neovim.logOutputToConsole": true,
+    "editor.lineNumbers": "relative",
+    "merge-conflict.autoNavigateNextConflict.enabled": true,
+    "merge-conflict.diffViewPosition": "Below",
+    "errorLens.enabledInMergeConflict": false,
+    "git.mergeEditor": false,
+    "editor.stickyScroll.enabled": true
 }
