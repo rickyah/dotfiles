@@ -17,7 +17,6 @@
     "editor.wordWrap": "on",
     "editor.wordWrapColumn": 120,
     "editor.minimap.renderCharacters": false,
-    "workbench.sideBar.location": "right",
     "window.titleBarStyle": "native",
     "window.nativeTabs": true,
     "workbench.editor.revealIfOpen": true,
@@ -112,5 +111,11 @@
     "merge-conflict.diffViewPosition": "Below",
     "errorLens.enabledInMergeConflict": false,
     "git.mergeEditor": false,
-    "editor.stickyScroll.enabled": true
+    "editor.stickyScroll.enabled": true,
+    "search.searchOnType": false,
+    "workbench.sideBar.location": "right",
+    "references.preferredLocation": "view",
+    "less.hover.references": false,
+    "css.hover.references": false,
+    "scss.hover.references": false
 }
