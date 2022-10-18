@@ -13,10 +13,7 @@
         "key": "cmd+k cmd+b",
         "command": "-workbench.action.toggleSidebarVisibility"
     },
-    {
-        "key": "ctrl+tab",
-        "command": "workbench.action.nextEditor"
-    },
+
     {
         "key": "alt+cmd+right",
         "command": "-workbench.action.nextEditor"
@@ -649,5 +646,13 @@
         "key": "cmd+k cmd+k",
         "command": "togglePeekWidgetFocus",
         "when": "inReferenceSearchEditor || referenceSearchVisible"
+    },
+    {
+        "key": "ctrl+tab",
+        "command": "workbench.action.nextEditorInGroup"
+    },
+    {
+        "key": "ctrl+shift+tab",
+        "command": "workbench.action.previousEditorInGroup"
     }
 ]
