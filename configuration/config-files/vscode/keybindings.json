@@ -639,7 +639,7 @@
     {
         "key": "cmd+0",
         "command": "workbench.action.toggleSidebarVisibility",
-        "when": "outline.active"
+        "when": "view.outline.visible"
     },
     {
         "key": "cmd+9",
