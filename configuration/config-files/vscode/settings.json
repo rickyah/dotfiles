@@ -117,5 +117,6 @@
     "references.preferredLocation": "view",
     "less.hover.references": false,
     "css.hover.references": false,
-    "scss.hover.references": false
+    "scss.hover.references": false,
+    "telemetry.telemetryLevel": "off",
 }
