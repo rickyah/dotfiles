@@ -119,4 +119,5 @@
     "css.hover.references": false,
     "scss.hover.references": false,
     "telemetry.telemetryLevel": "off",
+    "workbench.editor.highlightModifiedTabs": true
 }
