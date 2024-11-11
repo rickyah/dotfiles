@@ -10,24 +10,29 @@ puts 'Installing zshell and oh my zsh'
 puts '---------------------------------------------------------------------------------'
 
 require "#{ENV['_DOTF_ROOT']}/share/dotf/file_rsync"
+oh_my_zshell_install_script = 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
+powerlevel_install_script = 'git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k'
 
-puts 'Do you want me to install zsh as the default shell? (y/n)'
+puts 'Do you want me to install zsh as the default shell? This will run the script:'
+puts "'#{oh_my_zshell_install_script}'"
+puts '(y/n)'
 unless gets.chomp =~ /^[Yy]/
   puts 'Aborting...'
   exit 2
 end
 
 puts
-puts "Cloning the oh-my-zsh repository into the users's folder"
-system 'git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh'
+puts "Installing oh-my-zsh..."
+system "#{oh_my_zshell_install_script}"
 
 if File.exist? '~/.zshrc'
   puts 'Found and existing zshrc file. Making a backup called .zshrc.orig'
   FileUtils.cp('~/.zshrc', '~/.zshrc.orig')
 end
 
-puts
-puts 'Setting zsh as system shell'
+puts 'Installing Powerlevel theme for zsh...'
+system "#{powerlevel_install_script}#"
+
 
 result = system 'chsh -s /bin/zsh'
 exit result unless result == 0
