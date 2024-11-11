@@ -121,7 +121,7 @@
 	t = tag -l
 
 # stashes
-	st = stash
+	st = stash -u
 	stl = stash list
 	stp = stash pop
 	sts = "!f() { git stash show stash@{$1}; }; f"
