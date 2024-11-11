@@ -3,7 +3,7 @@
 	# using a configuration if there is no global configuration set
 	useConfigOnly = true
 	name = Ricardo Amores
-	email = rickyah@gmail.com
+	email = ricardoamores@mpg.io
 
 # These settings are defined in global gitconfig files so
 # the emails are not stored publicly on the git repository
@@ -190,6 +190,8 @@
 	r = reset
 	rh = reset HEAD
 	rhh = reset HEAD --hard
+# cherry -pick
+	cp = cherry-pick
 
 [push]
 	default=simple
@@ -201,3 +203,11 @@
 	process = git-lfs filter-process
 [init]
 	defaultBranch = main
+[maintenance]
+	repo = /Users/ricardoamores/development/MT/FallGuys-iOS
+	repo = /Users/ricardoamores/development/MT/FallGuys-Android
+[credential]
+	helper =
+	helper = /usr/local/share/gcm-core/git-credential-manager
+[credential "https://dev.azure.com"]
+	useHttpPath = true
