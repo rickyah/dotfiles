@@ -191,6 +191,9 @@
 	rh = reset HEAD
 	rhh = reset HEAD --hard
 
+# cherry -pick
+	cp = cherry-pick
+
 [push]
 	default=simple
 
@@ -201,3 +204,4 @@
 	process = git-lfs filter-process
 [init]
 	defaultBranch = main
+
