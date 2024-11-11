@@ -170,7 +170,7 @@
 	# Log oneline with more information
 	l = "!f() { git log $@ --pretty=format:'%Cred%h%Creset %<(75,trunc)%s %Cgreen%<(16,trunc)%cd %<(16,trunc)%C(bold blue)%an%Creset %C(yellow)%D' --date=format:'%d-%b-%y %H:%M' --color=always;}; f"
 	# log oneline showing graph
-	lg = "!f() { git log $@ --graph --pretty=format:'%>|(20)%Cred%h%Creset - %<(52,trunc)%s %Cgreen%cr %<(16,trunc)%C(bold blue)%an%Creset %C(yellow)%D' --color=always;};f"
+	lg = "!f() { git log $@ --graph --pretty=format:'%>|(20)%Cred%h%Creset - %<(75,trunc)%s %Cgreen%cd %<(16,trunc)%C(bold blue)%an%Creset %C(yellow)%D' --color=always;};f"
 	# show tracked branches
 	tracked = "!d() { git for-each-ref --format='%(refname:short)' refs/heads/ | while read b; do if r=$(git config --get branch.$b.remote); then m=$(git config --get branch.$b.merge); echo \"$b -> $r/${m##*/}\"; fi; done } ; d"
 
