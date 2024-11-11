@@ -47,14 +47,17 @@
 	mergeoptions = --no-ff --no-commit
 	autocrlf = input
 	pager = delta
+[diff]
+	tool = vscode
 
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
+[difftool "vscode"]
+	cmd = code --wait --diff $LOCAL $REMOTE
 
-[mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+[merge]
+	tool = vscode
+
+[mergetool "vscode"]
+	cmd = code --wait $MERGED
 
 [apply]
 	# Detect whitespace errors when applying a patch
