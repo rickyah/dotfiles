@@ -9,7 +9,7 @@ MakeMakefile::Logging.instance_variable_set(:@logfile, File::NULL)
 def install_homebrew
   app_name = 'Homebrew'
   app_cmd = 'brew'
-  homebrew_install_cmd = 'ruby -e "$(curl -fsSL /bin/bash -c https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
+  homebrew_install_cmd = '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
   homebrew_setup_cmd = 'eval "$(/opt/homebrew/bin/brew shellenv)"'
   app_install_cmds = [homebrew_install_cmd, homebrew_setup_cmd]
   brewfile_filepath = "#{ENV['_DOTF_ROOT']}/../configuration/Brewfile"
