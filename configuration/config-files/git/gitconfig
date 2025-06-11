@@ -55,6 +55,9 @@
 
 [merge]
 	tool = vscode
+  # This conflict style also shows both conflicted changes AND how the diff
+  # was before any conflict giving more context
+	conflictStyle = zdiff3
 
 [mergetool "vscode"]
 	cmd = code --wait $MERGED
@@ -64,6 +67,7 @@
 	whitespace = fix
 
 [submodule]
+  # Work on N submodules at the same time
 	fetchJobs = 4
 
 [alias]
@@ -207,7 +211,20 @@
 	repo = /Users/ricardoamores/development/MT/FallGuys-iOS
 	repo = /Users/ricardoamores/development/MT/FallGuys-Android
 [credential]
-	helper =
 	helper = /usr/local/share/gcm-core/git-credential-manager
 [credential "https://dev.azure.com"]
 	useHttpPath = true
+[rerere]
+  # REuse REcorded REsolution: this feature caches the way you resolved conflicts
+  # If you have to re-apply them for some reason (e.g: reintegrating a main branch
+  # into your work branch multiple times so you don't have to repeat the conflict
+  # resolution each time you merge)
+  # https://git-scm.com/book/en/v2/Git-Tools-Rerere
+	enabled = true
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	navigate = true
+	side-by-side = true

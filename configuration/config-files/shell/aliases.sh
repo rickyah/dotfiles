@@ -14,25 +14,28 @@
 # alias apres='apachectl -k restart'
 
 # find aliases
-alias fn='find . -iname $1'
+# alias fn='find . -iname $1' # don't need this anymore thansk to fd
+alias fn='fd'
 
-# exa (replacement for ls)
-if command -v exa &> /dev/null
+# lsd (replacement for ls)
+# https://github.com/lsd-rs/lsd
+if command -v lsd &> /dev/null
 then
-    alias ls="exa --icons"
+    alias ls="lsd"
 fi
 
 # Get OS X Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
 alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm update npm -g; npm update -g; sudo gem update'
 
 # ruby
-alias be='bundle exec'
-alias bi='bundle install'
+# alias be='bundle exec'
+# alias bi='bundle install'
 
 # git
 alias g='git'
 
-# bat tool
+# bat tool: cat replacement
+# https://github.com/sharkdp/bat
 if hash bat 2>/dev/null; then
   alias cat='bat'
   export BAT_CONFIG_PATH="~/.batrc"
