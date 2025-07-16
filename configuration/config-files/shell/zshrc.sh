@@ -89,3 +89,6 @@ for file in ~/.config/shell/*; do
     fi
 done
 unset file
+
+# forgit https://github.com/wfxr/forgit
+source $HOMEBREW_PREFIX/share/forgit/forgit.plugin.zsh

@@ -47,6 +47,7 @@
 	mergeoptions = --no-ff --no-commit
 	autocrlf = input
 	pager = delta
+
 [diff]
 	tool = vscode
 
@@ -56,6 +57,10 @@
 [merge]
 	tool = vscode
 
+    # This conflict style also shows both conflicted changes AND how the diff
+    # was before any conflict giving more context
+	conflictStyle = zdiff3
+
 [mergetool "vscode"]
 	cmd = code --wait $MERGED
 
@@ -64,6 +69,7 @@
 	whitespace = fix
 
 [submodule]
+  # Work on N submodules at the same time
 	fetchJobs = 4
 
 [alias]
@@ -175,7 +181,6 @@
 	tracked = "!d() { git for-each-ref --format='%(refname:short)' refs/heads/ | while read b; do if r=$(git config --get branch.$b.remote); then m=$(git config --get branch.$b.merge); echo \"$b -> $r/${m##*/}\"; fi; done } ; d"
 
 ## diff
-
 	# diff unstaged changes
 	d = diff
 	# diff staged changes
@@ -202,6 +207,29 @@
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
+
 [init]
 	defaultBranch = main
 
+[rerere]
+  # REuse REcorded REsolution: this feature caches the way you resolved conflicts
+  # If you have to re-apply them for some reason (e.g: reintegrating a main branch
+  # into your work branch multiple times so you don't have to repeat the conflict
+  # resolution each time you merge)
+  # https://git-scm.com/book/en/v2/Git-Tools-Rerere
+	enabled = true
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	# on windows powershell you must:
+	# - Install less and delta from scoop
+	# - set this two env variables for this to work:
+	#    - $env:GIT_PAGER="C:/Users/$Env:UserName/scoop/shims/delta.exe"
+	#    - $env:DELTA_PAGER="C:/Users/$Env:UserName/scoop/shims/less.exe"
+	#    (Better to set both on this on Powershell's $profile file)
+	line-numbers = true
+	side-by-side = true
+	navigate = true
+	syntax-theme = gruvbox-dark
